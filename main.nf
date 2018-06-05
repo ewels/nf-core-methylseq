@@ -15,6 +15,14 @@
 /*
  * SET UP CONFIGURATION VARIABLES
  */
+
+// Show help emssage
+params.help = false
+if (params.help){
+    helpMessage()
+    exit 0
+}
+
 params.name = false
 params.project = false
 params.clusterOptions = false
