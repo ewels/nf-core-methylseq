@@ -51,7 +51,7 @@ def helpMessage() {
       --bismark_index      Path to Bismark index
       --bwa_meth_index  Path to bwameth index
       --saveReference       Save reference(s) to results directory
-    
+
     Trimming options:
      --notrim   Skip read trimming
      --clip_r1  Trim the specified number of bases from the 5' end of read 1 (or single-end reads).
@@ -223,13 +223,13 @@ if( params.readPaths ){
     if( params.singleEnd ){
         Channel
             .from(params.readPaths)
-            .map { row -> [ row[0], [file(row[1][0])]] }
+            .map { row -> [ row[0], [row[1][0]]] }
             .ifEmpty { exit 1, "params.readPaths was empty - no input files supplied" }
             .into { ch_read_files_for_fastqc; ch_read_files_for_trim_galore }
     } else {
         Channel
             .from(params.readPaths)
-            .map { row -> [ row[0], [file(row[1][0]), file(row[1][1])]] }
+            .map { row -> [ row[0], [row[1][0], row[1][1]]] }
             .ifEmpty { exit 1, "params.readPaths was empty - no input files supplied" }
             .into { ch_read_files_for_fastqc; ch_read_files_for_trim_galore }
     }
@@ -442,7 +442,7 @@ process fastqc {
         saveAs: {filename -> filename.indexOf(".zip") > 0 ? "zips/$filename" : "$filename"}
 
     input:
-    set val(name), file(reads) from ch_read_files_for_fastqc
+    tuple val(name), path(reads) from ch_read_files_for_fastqc
 
     output:
     file '*_fastqc.{zip,html}' into ch_fastqc_results_for_multiqc
@@ -472,11 +472,11 @@ if( params.notrim ){
             }
 
         input:
-        set val(name), file(reads) from ch_read_files_for_trim_galore
+        tuple val(name), path(reads) from ch_read_files_for_trim_galore
         file wherearemyfiles from ch_wherearemyfiles_for_trimgalore.collect()
 
         output:
-        set val(name), file('*fq.gz') into ch_trimmed_reads_for_alignment
+        tuple val(name), path('*fq.gz') into ch_trimmed_reads_for_alignment
         file "*trimming_report.txt" into ch_trim_galore_results_for_multiqc
         file "*_fastqc.{zip,html}"
         file "where_are_my_files.txt"
@@ -515,14 +515,14 @@ if( params.aligner =~ /bismark/ ){
             }
 
         input:
-        set val(name), file(reads) from ch_trimmed_reads_for_alignment
+        tuple val(name), path(reads) from ch_trimmed_reads_for_alignment
         file index from ch_bismark_index_for_bismark_align.collect()
         file wherearemyfiles from ch_wherearemyfiles_for_bismark_align.collect()
         file knownsplices from ch_splicesites_for_bismark_hisat_align
 
         output:
-        set val(name), file("*.bam") into ch_bam_for_bismark_deduplicate, ch_bam_for_bismark_summary, ch_bam_for_preseq
-        set val(name), file("*report.txt") into ch_bismark_align_log_for_bismark_report, ch_bismark_align_log_for_bismark_summary, ch_bismark_align_log_for_multiqc
+        tuple val(name), path("*.bam") into ch_bam_for_bismark_deduplicate, ch_bam_for_bismark_summary, ch_bam_for_preseq
+        tuple val(name), path("*report.txt") into ch_bismark_align_log_for_bismark_report, ch_bismark_align_log_for_bismark_summary, ch_bismark_align_log_for_multiqc
         file "*.fq.gz" optional true
         file "where_are_my_files.txt"
 
@@ -592,11 +592,11 @@ if( params.aligner =~ /bismark/ ){
                 saveAs: {filename -> filename.indexOf(".bam") == -1 ? "logs/$filename" : "$filename"}
 
             input:
-            set val(name), file(bam) from ch_bam_for_bismark_deduplicate
+            tuple val(name), path(bam) from ch_bam_for_bismark_deduplicate
 
             output:
-            set val(name), file("*.deduplicated.bam") into ch_bam_dedup_for_bismark_methXtract, ch_bam_dedup_for_qualimap
-            set val(name), file("*.deduplication_report.txt") into ch_bismark_dedup_log_for_bismark_report, ch_bismark_dedup_log_for_bismark_summary, ch_bismark_dedup_log_for_multiqc
+            tuple val(name), path("*.deduplicated.bam") into ch_bam_dedup_for_bismark_methXtract, ch_bam_dedup_for_qualimap
+            tuple val(name), path("*.deduplication_report.txt") into ch_bismark_dedup_log_for_bismark_report, ch_bismark_dedup_log_for_bismark_summary, ch_bismark_dedup_log_for_multiqc
 
             script:
             if( params.singleEnd ) {
@@ -626,11 +626,11 @@ if( params.aligner =~ /bismark/ ){
             }
 
         input:
-        set val(name), file(bam) from ch_bam_dedup_for_bismark_methXtract
+        tuple val(name), path(bam) from ch_bam_dedup_for_bismark_methXtract
 
         output:
-        set val(name), file("*splitting_report.txt") into ch_bismark_splitting_report_for_bismark_report, ch_bismark_splitting_report_for_bismark_summary, ch_bismark_splitting_report_for_multiqc
-        set val(name), file("*.M-bias.txt") into ch_bismark_mbias_for_bismark_report, ch_bismark_mbias_for_bismark_summary, ch_bismark_mbias_for_multiqc
+        tuple val(name), path("*splitting_report.txt") into ch_bismark_splitting_report_for_bismark_report, ch_bismark_splitting_report_for_bismark_summary, ch_bismark_splitting_report_for_multiqc
+        tuple val(name), path("*.M-bias.txt") into ch_bismark_mbias_for_bismark_report, ch_bismark_mbias_for_bismark_summary, ch_bismark_mbias_for_multiqc
         file '*.{png,gz}'
 
         script:
@@ -695,7 +695,7 @@ if( params.aligner =~ /bismark/ ){
         publishDir "${params.outdir}/bismark_reports", mode: 'copy'
 
         input:
-        set val(name), file(align_log), file(dedup_log), file(splitting_report), file(mbias) from ch_bismark_logs_for_bismark_report
+        tuple val(name), path(align_log), path(dedup_log), path(splitting_report), path(mbias) from ch_bismark_logs_for_bismark_report
 
         output:
         file '*{html,txt}' into ch_bismark_reports_results_for_multiqc
@@ -756,12 +756,12 @@ if( params.aligner == 'bwameth' ){
             }
 
         input:
-        set val(name), file(reads) from ch_trimmed_reads_for_alignment
+        tuple val(name), path(reads) from ch_trimmed_reads_for_alignment
         file bwa_meth_indices from ch_bwa_meth_indices_for_bwamem_align.collect()
         file wherearemyfiles from ch_wherearemyfiles_for_bwamem_align.collect()
 
         output:
-        set val(name), file('*.bam') into ch_bam_for_samtools_sort_index_flagstat, ch_bam_for_preseq
+        tuple val(name), path('*.bam') into ch_bam_for_samtools_sort_index_flagstat, ch_bam_for_preseq
         file "where_are_my_files.txt"
 
         script:
@@ -790,11 +790,11 @@ if( params.aligner == 'bwameth' ){
             }
 
         input:
-        set val(name), file(bam) from ch_bam_for_samtools_sort_index_flagstat
+        tuple val(name), path(bam) from ch_bam_for_samtools_sort_index_flagstat
         file wherearemyfiles from ch_wherearemyfiles_for_samtools_sort_index_flagstat.collect()
 
         output:
-        set val(name), file("${bam.baseName}.sorted.bam") into ch_bam_sorted_for_markDuplicates
+        tuple val(name), path("${bam.baseName}.sorted.bam") into ch_bam_sorted_for_markDuplicates
         file "${bam.baseName}.sorted.bam.bai" into ch_bam_index
         file "${bam.baseName}_flagstat_report.txt" into ch_flagstat_results_for_multiqc
         file "${bam.baseName}_stats_report.txt" into ch_samtools_stats_results_for_multiqc
@@ -827,10 +827,10 @@ if( params.aligner == 'bwameth' ){
                 saveAs: {filename -> filename.indexOf(".bam") == -1 ? "logs/$filename" : "$filename"}
 
             input:
-            set val(name), file(bam) from ch_bam_sorted_for_markDuplicates
+            tuple val(name), path(bam) from ch_bam_sorted_for_markDuplicates
 
             output:
-            set val(name), file("${bam.baseName}.markDups.bam") into ch_bam_dedup_for_methyldackel, ch_bam_dedup_for_qualimap
+            tuple val(name), path("${bam.baseName}.markDups.bam") into ch_bam_dedup_for_methyldackel, ch_bam_dedup_for_qualimap
             file "${bam.baseName}.markDups.bam.bai" into ch_bam_index_for_methyldackel //ToDo check if this correctly overrides the original channel
             file "${bam.baseName}.markDups_metrics.txt" into ch_markDups_results_for_multiqc
 
@@ -863,7 +863,7 @@ if( params.aligner == 'bwameth' ){
         publishDir "${params.outdir}/MethylDackel", mode: 'copy'
 
         input:
-        set val(name), file(bam) from ch_bam_dedup_for_methyldackel
+        tuple val(name), path(bam) from ch_bam_dedup_for_methyldackel
         file bam_index from ch_bam_index_for_methyldackel
         file fasta from ch_fasta_for_methyldackel
         file fasta_index from ch_fasta_index_for_methyldackel
@@ -899,7 +899,7 @@ process qualimap {
     publishDir "${params.outdir}/qualimap", mode: 'copy'
 
     input:
-    set val(name), file(bam) from ch_bam_dedup_for_qualimap
+    tuple val(name), path(bam) from ch_bam_dedup_for_qualimap
 
     output:
     file "${bam.baseName}_qualimap" into ch_qualimap_results_for_multiqc
@@ -930,7 +930,7 @@ process preseq {
     publishDir "${params.outdir}/preseq", mode: 'copy'
 
     input:
-    set val(name), file(bam) from ch_bam_for_preseq
+    tuple val(name), path(bam) from ch_bam_for_preseq
 
     output:
     file "${bam.baseName}.ccurve.txt" into preseq_results
