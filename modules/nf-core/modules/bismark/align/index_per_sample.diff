@@ -1,0 +1,14 @@
+diff --git a/modules/nf-core/modules/bismark/align/main.nf b/modules/nf-core/modules/bismark/align/main.nf
+index aa4879b..c03a6f9 100644
+--- a/modules/nf-core/modules/bismark/align/main.nf
++++ b/modules/nf-core/modules/bismark/align/main.nf
+@@ -19,8 +19,7 @@ process BISMARK_ALIGN {
+     }
+
+     input:
+-    tuple val(meta), path(reads)
+-    path index
++    tuple val(meta), path(reads), path(index)
+
+     output:
+     tuple val(meta), path("*bam")       , emit: bam

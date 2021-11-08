@@ -4,7 +4,10 @@
     "repos": {
         "nf-core/modules": {
             "bismark/align": {
-                "git_sha": "3aacd46da2b221ed47aaa05c413a828538d2c2ae"
+                "git_sha": "3aacd46da2b221ed47aaa05c413a828538d2c2ae",
+                "patches": [
+                    "modules/nf-core/modules/bismark/align/index_per_sample.diff"
+                ]
             },
             "bismark/deduplicate": {
                 "git_sha": "3aacd46da2b221ed47aaa05c413a828538d2c2ae"
