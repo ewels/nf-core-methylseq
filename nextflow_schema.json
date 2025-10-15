@@ -165,6 +165,12 @@
             "description": "Presets for working with specific bisulfite library preparation methods.",
             "default": "",
             "properties": {
+                "taps": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-outdent",
+                    "description": "Preset for working with TET-assisted pyridine borane sequencing (TAPS) libraries.",
+                    "help_text": "Specify this parameter when working with TAPS libraries.\n\nThis is also set if you set the aligner to `bwamem`."
+                },
                 "pbat": {
                     "type": "boolean",
                     "fa_icon": "fas fa-outdent",
@@ -411,7 +417,38 @@
             },
             "fa_icon": "far fa-circle"
         },
-        "qualimap_options": {
+        "bwamem_options": {
+            "title": "bwa-mem options",
+            "type": "object",
+            "description": "Parameters specific to BWA Mem indexing or aligning steps",
+            "default": "",
+            "properties": {
+                "bwamem_index": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to the BWA-MEM index filename base"
+                }
+            }
+        },
+        "rastair_options": {
+            "title": "rastair options",
+            "type": "object",
+            "description": "Parameters specific to the RASTAIR workflow",
+            "default": "",
+            "fa_icon": "fas fa-robot",
+            "properties": {
+                "trim_OT": {
+                    "type": "string",
+                    "default": "0,0,10,0",
+                    "description": "Nucleotides to exclude from methylation calling on Original Top (strand) reads, following this pattern: R1 start, R1 end, R2 start, R2 end"
+                },
+                "trim_OB": {
+                    "type": "string",
+                    "default": "0,0,10,0",
+                    "description": "Nucleotides to exclude from methylation calling on Original Bottom (strand) reads, following this pattern: R1 start, R1 end, R2 start, R2 end"
+                }
+            }
+        },        "qualimap_options": {
             "title": "Qualimap Options",
             "type": "object",
             "description": "Qualimap configurations",
@@ -681,6 +718,12 @@
             "$ref": "#/$defs/bwameth_options"
         },
         {
+            "$ref": "#/$defs/bwamem_options"
+        },
+        {
+            "$ref": "#/$defs/rastair_options"
+        },
+        {
             "$ref": "#/$defs/qualimap_options"
         },
         {
@@ -698,21 +741,5 @@
         {
             "$ref": "#/$defs/institutional_config_options"
         }
-    ],
-    "properties": {
-        "taps": {
-            "type": "boolean"
-        },
-        "trim_OT": {
-            "type": "string",
-            "default": "0,0,10,0"
-        },
-        "trim_OB": {
-            "type": "string",
-            "default": "0,0,10,0"
-        },
-        "bwamem_index": {
-            "type": "string"
-        }
-    }
+    ]
 }
