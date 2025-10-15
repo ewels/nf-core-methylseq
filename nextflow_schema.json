@@ -151,7 +151,6 @@
                 },
                 "use_mem2": {
                     "type": "boolean",
-                    "default": false,
                     "description": "Use BWA-MEM2 algorithm for BWA-Meth indexing and alignment.",
                     "fa_icon": "fas fa-forward",
                     "help_text": "When using the BWA-Meth aligner (`--aligner bwameth`), this parameter enables the BWA-MEM2 algorithm which can provide improved performance and accuracy. The BWA-MEM2 algorithm is a drop-in replacement for BWA-MEM that is generally faster and more accurate. This option only applies when using BWA-Meth aligner."
@@ -254,7 +253,6 @@
                 "skip_trimming_presets": {
                     "type": "boolean",
                     "description": "Skip presetting trimming parameters entirely",
-                    "default": false,
                     "fa_icon": "fas fa-dot-circle"
                 }
             },
@@ -700,5 +698,21 @@
         {
             "$ref": "#/$defs/institutional_config_options"
         }
-    ]
+    ],
+    "properties": {
+        "taps": {
+            "type": "boolean"
+        },
+        "trim_OT": {
+            "type": "string",
+            "default": "0,0,10,0"
+        },
+        "trim_OB": {
+            "type": "string",
+            "default": "0,0,10,0"
+        },
+        "bwamem_index": {
+            "type": "string"
+        }
+    }
 }
