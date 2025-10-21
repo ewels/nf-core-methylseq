@@ -240,31 +240,31 @@ workflow METHYLSEQ {
     //
     if (params.taps || params.aligner == 'bwamem') {
         log.info "TAPS protocol detected. Running TAPS conversion module."
-        TAPS_CONVERSION (
+        BAM_TAPS_CONVERSION (
             ch_bam,
             ch_bai,
             ch_fasta,
             ch_fasta_index,
         )
-        ch_rastair_mbias = TAPS_CONVERSION.out.mbias // channel: [ val(meta), [ txt ] ]
-        ch_rastair_call  = TAPS_CONVERSION.out.call // channel: [ val(meta), [ txt ] ]
-        ch_versions      = ch_versions.mix(TAPS_CONVERSION.out.versions)
-    } 
+        ch_rastair_mbias = BAM_TAPS_CONVERSION.out.mbias // channel: [ val(meta), [ txt ] ]
+        ch_rastair_call  = BAM_TAPS_CONVERSION.out.call // channel: [ val(meta), [ txt ] ]
+        ch_versions      = ch_versions.mix(BAM_TAPS_CONVERSION.out.versions)
+    }
 
     //
     // Subworkflow: Count negative C->T conversion rates as a readout for DNA methylation
     //
     else if (!params.taps && (params.aligner == 'bwameth' || (params.aligner == 'bwamem'))) {
-        METHYLDACKEL (
+        BAM_METHYLDACKEL (
             ch_bam,
             ch_bai,
             ch_fasta,
             ch_fasta_index
         )
-        ch_bedgraph    = METHYLDACKEL.out.methydackel_extract_bedgraph  // channel: [ val(meta), [ bedgraph ]  ]
-        ch_methylkit   = METHYLDACKEL.out.methydackel_extract_methylkit // channel: [ val(meta), [ methylkit ] ]
-        ch_mbias       = METHYLDACKEL.out.methydackel_mbias // channel: [ val(meta), [ mbias ] ]
-        ch_versions    = ch_versions.mix(METHYLDACKEL.out.versions)
+        ch_bedgraph    = BAM_METHYLDACKEL.out.methydackel_extract_bedgraph  // channel: [ val(meta), [ bedgraph ]  ]
+        ch_methylkit   = BAM_METHYLDACKEL.out.methydackel_extract_methylkit // channel: [ val(meta), [ methylkit ] ]
+        ch_mbias       = BAM_METHYLDACKEL.out.methydackel_mbias // channel: [ val(meta), [ mbias ] ]
+        ch_versions    = ch_versions.mix(BAM_METHYLDACKEL.out.versions)
     }
 
     //
