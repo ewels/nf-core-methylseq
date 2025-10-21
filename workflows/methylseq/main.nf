@@ -169,16 +169,16 @@ workflow METHYLSEQ {
     // Aligner: bwamem
     else if (params.aligner == 'bwamem'){
 
-        // ch_bwamem_inputs = ch_reads
-        //     .combine(ch_fasta)
-        //     .combine(ch_fasta_index)
-        //     .combine(ch_bwamem_index)
-        //     .multiMap { meta, reads, meta_fasta, fasta, meta_fasta_index, fasta_index, meta_bwamem, bwamem_index ->
-        //         reads: [ meta, reads ]
-        //         fasta: [ meta_fasta, fasta ]
-        //         fasta_index: [ meta_fasta_index, fasta_index ]
-        //         bwamem_index: [ meta_bwamem, bwamem_index ]
-        //     }
+        ch_bwamem_inputs = ch_reads
+            .combine(ch_fasta)
+            .combine(ch_fasta_index)
+            .combine(ch_bwamem_index)
+            .multiMap { meta, reads, meta_fasta, fasta, meta_fasta_index, fasta_index, meta_bwamem, bwamem_index ->
+                reads: [ meta, reads ]
+                fasta: [ meta_fasta, fasta ]
+                fasta_index: [ meta_fasta_index, fasta_index ]
+                bwamem_index: [ meta_bwamem, bwamem_index ]
+            }
 
         FASTQ_ALIGN_BWA (
             ch_bwamem_inputs.reads,
