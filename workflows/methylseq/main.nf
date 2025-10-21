@@ -15,7 +15,7 @@ include { FASTQ_ALIGN_DEDUP_BISMARK } from '../../subworkflows/nf-core/fastq_ali
 include { FASTQ_ALIGN_DEDUP_BWAMETH } from '../../subworkflows/nf-core/fastq_align_dedup_bwameth/main'
 include { FASTQ_ALIGN_BWA           } from '../../subworkflows/nf-core/fastq_align_bwa/main'
 include { PICARD_MARKDUPLICATES     } from '../../modules/nf-core/picard/markduplicates/main'
-include { SAMTOOLS_INDEX_ALIGNMENTS } from '../../modules/nf-core/samtools/index/main'
+include { SAMTOOLS_INDEX            } from '../../modules/nf-core/samtools/index/main'
 include { paramsSummaryMultiqc      } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML    } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText    } from '../../subworkflows/local/utils_nfcore_methylseq_pipeline'
