@@ -188,13 +188,13 @@ workflow METHYLSEQ {
         )
         ch_versions    = ch_versions.mix(FASTQ_ALIGN_BWA.out.versions)
 
-        if (skip_deduplication) {
+        if (params.skip_deduplication) {
             log.info "Skipping deduplication as per user request."
             ch_bam  = FASTQ_ALIGN_BWA.out.bam
             ch_bai  = FASTQ_ALIGN_BWA.out.bai
         }
 
-        if (!skip_deduplication) {
+        if (!params.skip_deduplication) {
             /*
             * Run Picard MarkDuplicates
             */
