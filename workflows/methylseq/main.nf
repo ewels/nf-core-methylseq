@@ -20,8 +20,8 @@ include { paramsSummaryMultiqc      } from '../../subworkflows/nf-core/utils_nfc
 include { softwareVersionsToYAML    } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText    } from '../../subworkflows/local/utils_nfcore_methylseq_pipeline'
 include { validateInputSamplesheet  } from '../../subworkflows/local/utils_nfcore_methylseq_pipeline'
-include { TAPS_CONVERSION           } from '../../subworkflows/nf-core/taps_conversion'
-include { METHYLDACKEL              } from '../../subworkflows/nf-core/methyldackel/main'
+include { BAM_TAPS_CONVERSION       } from '../../subworkflows/nf-core/bam_taps_conversion'
+include { BAM_METHYLDACKEL          } from '../../subworkflows/nf-core/bam_methyldackel/main'
 include { TARGETED_SEQUENCING       } from '../../subworkflows/local/targeted_sequencing'
 
 /*
