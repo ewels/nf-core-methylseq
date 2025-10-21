@@ -13,7 +13,9 @@ include { MULTIQC                   } from '../../modules/nf-core/multiqc/main'
 include { CAT_FASTQ                 } from '../../modules/nf-core/cat/fastq/main'
 include { FASTQ_ALIGN_DEDUP_BISMARK } from '../../subworkflows/nf-core/fastq_align_dedup_bismark/main'
 include { FASTQ_ALIGN_DEDUP_BWAMETH } from '../../subworkflows/nf-core/fastq_align_dedup_bwameth/main'
-include { FASTQ_ALIGN_DEDUP_BWAMEM  } from '../../subworkflows/nf-core/fastq_align_dedup_bwamem/main'
+include { FASTQ_ALIGN_BWA           } from '../../subworkflows/nf-core/fastq_align_bwa/main'
+include { PICARD_MARKDUPLICATES     } from '../../modules/nf-core/picard/markduplicates/main'
+include { SAMTOOLS_INDEX_ALIGNMENTS } from '../../modules/nf-core/samtools/index/main'
 include { paramsSummaryMultiqc      } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML    } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText    } from '../../subworkflows/local/utils_nfcore_methylseq_pipeline'
@@ -167,30 +169,66 @@ workflow METHYLSEQ {
     // Aligner: bwamem
     else if (params.aligner == 'bwamem'){
 
-        ch_bwamem_inputs = ch_reads
-            .combine(ch_fasta)
-            .combine(ch_fasta_index)
-            .combine(ch_bwamem_index)
-            .multiMap { meta, reads, meta_fasta, fasta, meta_fasta_index, fasta_index, meta_bwamem, bwamem_index ->
-                reads: [ meta, reads ]
-                fasta: [ meta_fasta, fasta ]
-                fasta_index: [ meta_fasta_index, fasta_index ]
-                bwamem_index: [ meta_bwamem, bwamem_index ]
-            }
+        // ch_bwamem_inputs = ch_reads
+        //     .combine(ch_fasta)
+        //     .combine(ch_fasta_index)
+        //     .combine(ch_bwamem_index)
+        //     .multiMap { meta, reads, meta_fasta, fasta, meta_fasta_index, fasta_index, meta_bwamem, bwamem_index ->
+        //         reads: [ meta, reads ]
+        //         fasta: [ meta_fasta, fasta ]
+        //         fasta_index: [ meta_fasta_index, fasta_index ]
+        //         bwamem_index: [ meta_bwamem, bwamem_index ]
+        //     }
 
-        FASTQ_ALIGN_DEDUP_BWAMEM (
+        FASTQ_ALIGN_BWA (
             ch_bwamem_inputs.reads,
-            ch_bwamem_inputs.fasta,
-            ch_bwamem_inputs.fasta_index,
             ch_bwamem_inputs.bwamem_index,
-            params.skip_deduplication,
-            workflow.profile.tokenize(',').intersect(['gpu']).size() >= 1
+            true,
+            ch_bwamem_inputs.fasta,
         )
+        ch_versions    = ch_versions.mix(FASTQ_ALIGN_BWA.out.versions)
 
-        ch_bam         = FASTQ_ALIGN_DEDUP_BWAMEM.out.bam
-        ch_bai         = FASTQ_ALIGN_DEDUP_BWAMEM.out.bai
-        ch_aligner_mqc = FASTQ_ALIGN_DEDUP_BWAMEM.out.multiqc
-        ch_versions    = ch_versions.mix(FASTQ_ALIGN_DEDUP_BWAMEM.out.versions.unique{ it.baseName })
+        if (skip_deduplication) {
+            log.info "Skipping deduplication as per user request."
+            ch_bam  = FASTQ_ALIGN_BWA.out.bam
+            ch_bai  = FASTQ_ALIGN_BWA.out.bai
+        }
+
+        if (!skip_deduplication) {
+            /*
+            * Run Picard MarkDuplicates
+            */
+            PICARD_MARKDUPLICATES (
+                ch_bam,
+                ch_fasta,
+                ch_fasta_index
+            )
+            /*
+            * Run samtools index on deduplicated alignment
+            */
+            SAMTOOLS_INDEX (
+                PICARD_MARKDUPLICATES.out.bam
+            )
+            ch_bam             = PICARD_MARKDUPLICATES.out.bam
+            ch_bai             = SAMTOOLS_INDEX.out.bai
+            ch_picard_metrics  = PICARD_MARKDUPLICATES.out.metrics
+            ch_versions        = ch_versions.mix(PICARD_MARKDUPLICATES.out.versions)
+            ch_versions        = ch_versions.mix(SAMTOOLS_INDEX.out.versions)
+        }
+
+        // FASTQ_ALIGN_DEDUP_BWAMEM (
+        //     ch_bwamem_inputs.reads,
+        //     ch_bwamem_inputs.fasta,
+        //     ch_bwamem_inputs.fasta_index,
+        //     ch_bwamem_inputs.bwamem_index,
+        //     params.skip_deduplication,
+        //     workflow.profile.tokenize(',').intersect(['gpu']).size() >= 1
+        // )
+
+        // ch_bam         = FASTQ_ALIGN_DEDUP_BWAMEM.out.bam
+        // ch_bai         = FASTQ_ALIGN_DEDUP_BWAMEM.out.bai
+        // ch_aligner_mqc = FASTQ_ALIGN_DEDUP_BWAMEM.out.multiqc
+        // ch_versions    = ch_versions.mix(FASTQ_ALIGN_DEDUP_BWAMEM.out.versions.unique{ it.baseName })
     }   
 
     else {
