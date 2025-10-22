@@ -24,6 +24,11 @@ workflow BAM_TAPS_CONVERSION {
 
     log.info "Running TAPS conversion module with Rastair to assess C->T conversion as a readout for methylation."
 
+    ch_bam.view{ it -> "Element from BAM_TAPS_CONVERSION ch_bam: ${it}" }
+    ch_bai.view{ it -> "Element from BAM_TAPS_CONVERSION ch_bai: ${it}" }
+    ch_fasta.view{ it -> "Element from BAM_TAPS_CONVERSION ch_fasta: ${it}" }
+    ch_fasta_index.view{ it -> "Element from BAM_TAPS_CONVERSION ch_fasta_index: ${it}" }
+
     RASTAIR_MBIAS (
         ch_bam,
         ch_bai,

@@ -207,6 +207,8 @@ workflow METHYLSEQ {
             log.info "Skipping deduplication as per user request."
             ch_bam  = FASTQ_ALIGN_BWA.out.bam
             ch_bai  = FASTQ_ALIGN_BWA.out.bai
+            ch_bam.view{ it -> "Element from skip_dedup ch_bam: ${it}" }
+            ch_bai.view{ it -> "Element from skip_dedup ch_bai: ${it}" }
         }
 
         else {
@@ -240,6 +242,10 @@ workflow METHYLSEQ {
             ch_picard_metrics  = PICARD_MARKDUPLICATES.out.metrics
             ch_versions        = ch_versions.mix(PICARD_MARKDUPLICATES.out.versions)
             ch_versions        = ch_versions.mix(SAMTOOLS_INDEX.out.versions)
+
+            ch_bam.view{ it -> "Element from dedup ch_bam: ${it}" }
+            ch_bai.view{ it -> "Element from dedup ch_bai: ${it}" }
+
         }
     }   
 
@@ -252,6 +258,11 @@ workflow METHYLSEQ {
     //
     if (params.taps || params.aligner == 'bwamem') {
         log.info "TAPS protocol detected. Running TAPS conversion module."
+        ch_bam.view{ it -> "Element from TAPS ch_bam: ${it}" }
+        ch_bai.view{ it -> "Element from TAPS ch_bai: ${it}" }
+        ch_fasta.view{ it -> "Element from TAPS ch_fasta: ${it}" }
+        ch_fasta_index.view{ it -> "Element from TAPS ch_fasta_index: ${it}" }
+
         BAM_TAPS_CONVERSION (
             ch_bam,
             ch_bai,
