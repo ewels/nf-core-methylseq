@@ -15,6 +15,7 @@ include { FASTQ_ALIGN_DEDUP_BISMARK } from '../../subworkflows/nf-core/fastq_ali
 include { FASTQ_ALIGN_DEDUP_BWAMETH } from '../../subworkflows/nf-core/fastq_align_dedup_bwameth/main'
 include { FASTQ_ALIGN_BWA           } from '../../subworkflows/nf-core/fastq_align_bwa/main'
 include { PICARD_MARKDUPLICATES     } from '../../modules/nf-core/picard/markduplicates/main'
+include { PICARD_ADDORREPLACEREADGROUPS } from '../../modules/nf-core/picard/addorreplacereadgroups/main'
 include { SAMTOOLS_INDEX            } from '../../modules/nf-core/samtools/index/main'
 include { paramsSummaryMultiqc      } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
 include { softwareVersionsToYAML    } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -211,10 +212,20 @@ workflow METHYLSEQ {
         else {
             log.info "Running deduplication with Picard MarkDuplicates."
             /*
+            * Run Picard AddOrReplaceReadGroups to add read group (RG) to reads in bam file
+            */
+            PICARD_ADDORREPLACEREADGROUPS (
+                FASTQ_ALIGN_BWA.out.bam,
+                ch_fasta,
+                ch_fasta_index
+            )
+            ch_versions = ch_versions.mix(PICARD_ADDORREPLACEREADGROUPS.out.versions)
+
+            /*
             * Run Picard MarkDuplicates
             */
             PICARD_MARKDUPLICATES (
-                FASTQ_ALIGN_BWA.out.bam,
+                PICARD_ADDORREPLACEREADGROUPS.out.bam,
                 ch_fasta,
                 ch_fasta_index
             )
