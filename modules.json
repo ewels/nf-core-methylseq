@@ -97,7 +97,7 @@
                     },
                     "parabricks/fq2bam": {
                         "branch": "master",
-                        "git_sha": "bc4ad3855d9b44430e20c324c3bf9d32c56de2a0",
+                        "git_sha": "8bce2578b057676f21b9c2e8171c4485078ab61d",
                         "installed_by": ["modules"]
                     },
                     "parabricks/fq2bammeth": {
