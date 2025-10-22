@@ -255,25 +255,22 @@ workflow METHYLSEQ {
     //
     if (params.taps || params.aligner == 'bwamem') {
 
-        ch_fasta        = ch_fasta.map { meta, fasta -> [ [:], fasta ] }
-        ch_fasta_index  = ch_fasta_index.map { meta, fasta_index -> [ [:], fasta_index ] }
-
-        ch_taps_inputs = ch_bam
-            .combine(ch_bai)
-            .combine(ch_fasta)
-            .combine(ch_fasta_index)
-            .multiMap { meta, bam, meta_bai, bai, meta_fasta, fasta, meta_fasta_index, fasta_index ->
-                bam:         [ meta, bam ]
-                bai:         [ meta, bai ]
-                fasta:       [ meta, fasta ]
-                fasta_index: [ meta, fasta_index ]
+        ch_bam_bai = ch_bam.join(ch_bai)
+        ch_taps_inputs = ch_bam_bai
+            .combine(ch_fasta)         // broadcast fasta
+            .combine(ch_fasta_index)   // broadcast fai
+            .multiMap { meta, bam, bai, _meta_fasta, fasta, _meta_fai, fai ->
+                bam:         [ meta, bam ]      // use sample meta so subworkflow aligns properly
+                bai:         [ meta, bai ]      // use sample meta so subworkflow aligns properly
+                fasta:       [ meta, fasta ]    // use sample meta so subworkflow aligns properly
+                fasta_index: [ meta, fai ]      // same here
             }
 
-        BAM_TAPS_CONVERSION (
+        BAM_TAPS_CONVERSION(
             ch_taps_inputs.bam,
             ch_taps_inputs.bai,
             ch_taps_inputs.fasta,
-            ch_taps_inputs.fasta_index,
+            ch_taps_inputs.fasta_index
         )
         ch_rastair_mbias = BAM_TAPS_CONVERSION.out.mbias // channel: [ val(meta), [ txt ] ]
         ch_rastair_call  = BAM_TAPS_CONVERSION.out.call // channel: [ val(meta), [ txt ] ]
