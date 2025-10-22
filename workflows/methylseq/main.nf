@@ -180,6 +180,8 @@ workflow METHYLSEQ {
                 fasta_index: [ meta_fasta_index, fasta_index ]
                 bwamem_index: [ meta_bwamem, bwamem_index ]
             }
+        
+        ch_bwamem_inputs.view()
 
         // FASTQ_ALIGN_DEDUP_BWAMEM (
         //     ch_bwamem_inputs.reads,
@@ -257,11 +259,6 @@ workflow METHYLSEQ {
     // Subworkflow: Count positive mC->T conversion rates as a readout for DNA methylation
     //
     if (params.taps || params.aligner == 'bwamem') {
-        log.info "TAPS protocol detected. Running TAPS conversion module."
-        ch_bam.view{ it -> "Element from TAPS ch_bam: ${it}" }
-        ch_bai.view{ it -> "Element from TAPS ch_bai: ${it}" }
-        ch_fasta.view{ it -> "Element from TAPS ch_fasta: ${it}" }
-        ch_fasta_index.view{ it -> "Element from TAPS ch_fasta_index: ${it}" }
 
         ch_taps_inputs = ch_bam
             .combine(ch_bai)
@@ -274,7 +271,14 @@ workflow METHYLSEQ {
                 fasta_index: [ meta_fasta_index, fasta_index ]
             }
 
-        ch_taps_inputs.view { it -> "Element from TAPS ch_taps_inputs: ${it}" }
+        // ch_taps_inputs.view { it -> "Element from TAPS ch_taps_inputs: ${it}" }
+
+        ch_bam.view{ "bam: ${it}" }
+        ch_bai.view{ "bai: ${it}" }
+        ch_fasta.view{ "fasta: ${it}" }
+        ch_fasta_index.view{ "fasta_index: ${it}" }
+
+        ch_taps_inputs.view{ "TAPS input: ${it}" }
 
         BAM_TAPS_CONVERSION (
             ch_taps_inputs.bam,
