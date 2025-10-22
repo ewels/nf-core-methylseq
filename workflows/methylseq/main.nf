@@ -269,8 +269,6 @@ workflow METHYLSEQ {
                 fasta_index: [ meta, fasta_index ]
             }
 
-        ch_taps_inputs.view{ "TAPS input: ${it}" }
-
         BAM_TAPS_CONVERSION (
             ch_taps_inputs.bam,
             ch_taps_inputs.bai,
