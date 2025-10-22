@@ -263,11 +263,24 @@ workflow METHYLSEQ {
         ch_fasta.view{ it -> "Element from TAPS ch_fasta: ${it}" }
         ch_fasta_index.view{ it -> "Element from TAPS ch_fasta_index: ${it}" }
 
+        ch_taps_inputs = ch_bam
+            .combine(ch_bai)
+            .combine(ch_fasta)
+            .combine(ch_fasta_index)
+            .multiMap { meta, bam, meta_bai, bai, meta_fasta, fasta, meta_fasta_index, fasta_index ->
+                bam: [ meta, bam ]
+                bai: [ meta_bai, bai ]
+                fasta: [ meta_fasta, fasta ]
+                fasta_index: [ meta_fasta_index, fasta_index ]
+            }
+
+        ch_taps_inputs.view { it -> "Element from TAPS ch_taps_inputs: ${it}" }
+
         BAM_TAPS_CONVERSION (
-            ch_bam,
-            ch_bai,
-            ch_fasta,
-            ch_fasta_index,
+            ch_taps_inputs.bam,
+            ch_taps_inputs.bai,
+            ch_taps_inputs.fasta,
+            ch_taps_inputs.fasta_index,
         )
         ch_rastair_mbias = BAM_TAPS_CONVERSION.out.mbias // channel: [ val(meta), [ txt ] ]
         ch_rastair_call  = BAM_TAPS_CONVERSION.out.call // channel: [ val(meta), [ txt ] ]
