@@ -181,8 +181,6 @@ workflow METHYLSEQ {
                 bwamem_index: [ meta_bwamem, bwamem_index ]
             }
         
-        ch_bwamem_inputs.view()
-
         // FASTQ_ALIGN_DEDUP_BWAMEM (
         //     ch_bwamem_inputs.reads,
         //     ch_bwamem_inputs.fasta,
@@ -257,10 +255,9 @@ workflow METHYLSEQ {
     //
     if (params.taps || params.aligner == 'bwamem') {
 
-
         ch_fasta        = ch_fasta.map { meta, fasta -> [ [:], fasta ] }
         ch_fasta_index  = ch_fasta_index.map { meta, fasta_index -> [ [:], fasta_index ] }
-        
+
         ch_taps_inputs = ch_bam
             .combine(ch_bai)
             .combine(ch_fasta)
@@ -271,13 +268,6 @@ workflow METHYLSEQ {
                 fasta:       [ meta, fasta ]
                 fasta_index: [ meta, fasta_index ]
             }
-
-        // ch_taps_inputs.view { it -> "Element from TAPS ch_taps_inputs: ${it}" }
-
-        ch_bam.view{ "bam: ${it}" }
-        ch_bai.view{ "bai: ${it}" }
-        ch_fasta.view{ "fasta: ${it}" }
-        ch_fasta_index.view{ "fasta_index: ${it}" }
 
         ch_taps_inputs.view{ "TAPS input: ${it}" }
 
