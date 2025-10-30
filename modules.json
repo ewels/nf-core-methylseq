@@ -92,12 +92,7 @@
                     },
                     "multiqc": {
                         "branch": "master",
-                        "git_sha": "e10b76ca0c66213581bec2833e30d31f239dec0b",
-                        "installed_by": ["modules"]
-                    },
-                    "parabricks/fq2bam": {
-                        "branch": "master",
-                        "git_sha": "8bce2578b057676f21b9c2e8171c4485078ab61d",
+                        "git_sha": "af27af1be706e6a2bb8fe454175b0cdf77f47b49",
                         "installed_by": ["modules"]
                     },
                     "parabricks/fq2bammeth": {
@@ -112,17 +107,17 @@
                     },
                     "picard/bedtointervallist": {
                         "branch": "master",
-                        "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
+                        "git_sha": "df124e87c74d8b40285199f8cc20151f5aa57255",
                         "installed_by": ["modules"]
                     },
                     "picard/collecthsmetrics": {
                         "branch": "master",
-                        "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
+                        "git_sha": "df124e87c74d8b40285199f8cc20151f5aa57255",
                         "installed_by": ["modules"]
                     },
                     "picard/createsequencedictionary": {
                         "branch": "master",
-                        "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",
+                        "git_sha": "df124e87c74d8b40285199f8cc20151f5aa57255",
                         "installed_by": ["modules"]
                     },
                     "picard/markduplicates": {

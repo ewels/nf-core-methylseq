@@ -13,7 +13,7 @@ include { MULTIQC                   } from '../../modules/nf-core/multiqc/main'
 include { CAT_FASTQ                 } from '../../modules/nf-core/cat/fastq/main'
 include { FASTQ_ALIGN_DEDUP_BISMARK } from '../../subworkflows/nf-core/fastq_align_dedup_bismark/main'
 include { FASTQ_ALIGN_DEDUP_BWAMETH } from '../../subworkflows/nf-core/fastq_align_dedup_bwameth/main'
-include { FASTQ_ALIGN_BWA           } from '../../subworkflows/nf-core/fastq_align_bwa/main'
+include { FASTQ_ALIGN_DEDUP_BWAMEM  } from '../../subworkflows/nf-core/fastq_align_dedup_bwamem/main'
 include { PICARD_MARKDUPLICATES     } from '../../modules/nf-core/picard/markduplicates/main'
 include { PICARD_ADDORREPLACEREADGROUPS } from '../../modules/nf-core/picard/addorreplacereadgroups/main'
 include { SAMTOOLS_INDEX            } from '../../modules/nf-core/samtools/index/main'
@@ -181,34 +181,22 @@ workflow METHYLSEQ {
                 bwamem_index: [ meta_bwamem, bwamem_index ]
             }
         
-        // FASTQ_ALIGN_DEDUP_BWAMEM (
-        //     ch_bwamem_inputs.reads,
-        //     ch_bwamem_inputs.fasta,
-        //     ch_bwamem_inputs.fasta_index,
-        //     ch_bwamem_inputs.bwamem_index,
-        //     params.skip_deduplication,
-        //     workflow.profile.tokenize(',').intersect(['gpu']).size() >= 1
-        // )
-
-        // ch_bam         = FASTQ_ALIGN_DEDUP_BWAMEM.out.bam
-        // ch_bai         = FASTQ_ALIGN_DEDUP_BWAMEM.out.bai
-        // ch_aligner_mqc = FASTQ_ALIGN_DEDUP_BWAMEM.out.multiqc
-        // ch_versions    = ch_versions.mix(FASTQ_ALIGN_DEDUP_BWAMEM.out.versions.unique{ it.baseName })
-
-        FASTQ_ALIGN_BWA (
+        FASTQ_ALIGN_DEDUP_BWAMEM (
             ch_bwamem_inputs.reads,
-            ch_bwamem_inputs.bwamem_index,
-            true,
             ch_bwamem_inputs.fasta,
+            ch_bwamem_inputs.fasta_index,
+            ch_bwamem_inputs.bwamem_index,
+            params.skip_deduplication
+            workflow.profile.tokenize(',').intersect(['gpu']).size() >= 1
         )
-        ch_versions = ch_versions.mix(FASTQ_ALIGN_BWA.out.versions)
+
+        ch_aligner_mqc = FASTQ_ALIGN_DEDUP_BWAMEM.out.multiqc
+        ch_versions    = ch_versions.mix(FASTQ_ALIGN_DEDUP_BWAMEM.out.versions.unique{ it.baseName })
 
         if (params.skip_deduplication) {
             log.info "Skipping deduplication as per user request."
-            ch_bam  = FASTQ_ALIGN_BWA.out.bam
-            ch_bai  = FASTQ_ALIGN_BWA.out.bai
-            ch_bam.view{ it -> "Element from skip_dedup ch_bam: ${it}" }
-            ch_bai.view{ it -> "Element from skip_dedup ch_bai: ${it}" }
+            ch_bam  = FASTQ_ALIGN_DEDUP_BWAMEM.out.bam
+            ch_bai  = FASTQ_ALIGN_DEDUP_BWAMEM.out.bai
         }
 
         else {
@@ -217,7 +205,7 @@ workflow METHYLSEQ {
             * Run Picard AddOrReplaceReadGroups to add read group (RG) to reads in bam file
             */
             PICARD_ADDORREPLACEREADGROUPS (
-                FASTQ_ALIGN_BWA.out.bam,
+                FASTQ_ALIGN_DEDUP_BWAMEM.out.bam,
                 ch_fasta,
                 ch_fasta_index
             )
