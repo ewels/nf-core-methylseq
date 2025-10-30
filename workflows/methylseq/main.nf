@@ -186,7 +186,7 @@ workflow METHYLSEQ {
             ch_bwamem_inputs.fasta,
             ch_bwamem_inputs.fasta_index,
             ch_bwamem_inputs.bwamem_index,
-            params.skip_deduplication
+            params.skip_deduplication,
             workflow.profile.tokenize(',').intersect(['gpu']).size() >= 1
         )
 
