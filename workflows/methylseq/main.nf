@@ -190,48 +190,10 @@ workflow METHYLSEQ {
             workflow.profile.tokenize(',').intersect(['gpu']).size() >= 1
         )
 
+        ch_bam         = FASTQ_ALIGN_DEDUP_BWAMEM.out.bam
+        ch_bai         = FASTQ_ALIGN_DEDUP_BWAMEM.out.bai
         ch_aligner_mqc = FASTQ_ALIGN_DEDUP_BWAMEM.out.multiqc
         ch_versions    = ch_versions.mix(FASTQ_ALIGN_DEDUP_BWAMEM.out.versions.unique{ it.baseName })
-
-        if (params.skip_deduplication) {
-            log.info "Skipping deduplication as per user request."
-            ch_bam  = FASTQ_ALIGN_DEDUP_BWAMEM.out.bam
-            ch_bai  = FASTQ_ALIGN_DEDUP_BWAMEM.out.bai
-        }
-
-        else {
-            log.info "Running deduplication with Picard MarkDuplicates."
-            /*
-            * Run Picard AddOrReplaceReadGroups to add read group (RG) to reads in bam file
-            */
-            PICARD_ADDORREPLACEREADGROUPS (
-                FASTQ_ALIGN_DEDUP_BWAMEM.out.bam,
-                ch_fasta,
-                ch_fasta_index
-            )
-            ch_versions = ch_versions.mix(PICARD_ADDORREPLACEREADGROUPS.out.versions)
-
-            /*
-            * Run Picard MarkDuplicates
-            */
-            PICARD_MARKDUPLICATES (
-                PICARD_ADDORREPLACEREADGROUPS.out.bam,
-                ch_fasta,
-                ch_fasta_index
-            )
-            /*
-            * Run samtools index on deduplicated alignment
-            */
-            SAMTOOLS_INDEX (
-                PICARD_MARKDUPLICATES.out.bam
-            )
-            ch_bam             = PICARD_MARKDUPLICATES.out.bam
-            ch_bai             = SAMTOOLS_INDEX.out.bai
-            ch_picard_metrics  = PICARD_MARKDUPLICATES.out.metrics
-            ch_versions        = ch_versions.mix(PICARD_MARKDUPLICATES.out.versions)
-            ch_versions        = ch_versions.mix(SAMTOOLS_INDEX.out.versions)
-
-        }
     }   
 
     else {
