@@ -269,11 +269,23 @@ workflow METHYLSEQ {
     // Subworkflow: Count negative C->T conversion rates as a readout for DNA methylation
     //
     else if (!params.taps && (params.aligner == 'bwameth' || (params.aligner == 'bwamem'))) {
+
+        ch_bam_bai = ch_bam.join(ch_bai)
+        ch_methyldackel_inputs = ch_bam_bai
+            .combine(ch_fasta)         // broadcast fasta
+            .combine(ch_fasta_index)   // broadcast fai
+            .multiMap { meta, bam, bai, _meta_fasta, fasta, _meta_fai, fai ->
+                bam:         [ meta, bam ]      // use sample meta so subworkflow aligns properly
+                bai:         [ meta, bai ]      // use sample meta so subworkflow aligns properly
+                fasta:       [ meta, fasta ]    // use sample meta so subworkflow aligns properly
+                fasta_index: [ meta, fai ]      // same here
+            }
+    
         BAM_METHYLDACKEL (
-            ch_bam,
-            ch_bai,
-            ch_fasta,
-            ch_fasta_index
+            ch_methyldackel_inputs.bam,
+            ch_methyldackel_inputs.bai,
+            ch_methyldackel_inputs.fasta,
+            ch_methyldackel_inputs.fasta_index
         )
         ch_bedgraph    = BAM_METHYLDACKEL.out.methydackel_extract_bedgraph  // channel: [ val(meta), [ bedgraph ]  ]
         ch_methylkit   = BAM_METHYLDACKEL.out.methydackel_extract_methylkit // channel: [ val(meta), [ methylkit ] ]
