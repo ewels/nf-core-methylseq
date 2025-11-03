@@ -70,9 +70,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-15T15:20:35.417926"
+        "timestamp": "2025-10-21T22:25:32.202913016"
     },
     "test_bam_stats_samtools_single_end - stub": {
         "content": [
@@ -145,9 +145,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-15T15:20:25.439222"
+        "timestamp": "2025-10-21T22:25:23.695445241"
     },
     "test_bam_stats_samtools_paired_end_cram - stub": {
         "content": [
@@ -220,9 +220,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-15T15:20:46.02738"
+        "timestamp": "2025-10-21T22:25:40.576315411"
     },
     "test_bam_stats_samtools_single_end": {
         "content": [
@@ -250,7 +250,7 @@
                         "id": "test",
                         "single_end": true
                     },
-                    "test.stats:md5,7a05a22bdb17e8df6e8c2d100ff09a31"
+                    "test.stats:md5,0bf2d071a72dd19461e8207fe50ab2bc"
                 ]
             ],
             [
@@ -261,9 +261,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-15T15:20:00.064679"
+        "timestamp": "2025-10-21T22:24:58.246864027"
     },
     "test_bam_stats_samtools_paired_end": {
         "content": [
@@ -291,7 +291,7 @@
                         "id": "test",
                         "single_end": true
                     },
-                    "test.stats:md5,a391612b5ef5b181e854ccaad8c8a068"
+                    "test.stats:md5,9813b9275caee52b958bb11f94b49d6b"
                 ]
             ],
             [
@@ -302,9 +302,9 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-15T15:20:08.141202"
+        "timestamp": "2025-10-21T22:25:06.572678034"
     },
     "test_bam_stats_samtools_paired_end_cram": {
         "content": [
@@ -332,7 +332,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test.stats:md5,2b0e31ab01b867a6ff312023ae03838d"
+                    "test.stats:md5,c995ccd64c765c41401d650d0ff9ebc3"
                 ]
             ],
             [
@@ -343,8 +343,8 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-15T15:20:16.06318"
+        "timestamp": "2025-10-21T22:25:15.292458811"
     }
 }

@@ -46,7 +46,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:55:30.325705625"
+        "timestamp": "2025-10-21T22:30:06.002892488"
     },
     "Params: bwameth | generate fasta index | download bwameth index": {
         "content": [
@@ -98,7 +98,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:54:41.408759009"
+        "timestamp": "2025-10-21T22:28:58.338247137"
     },
     "Params: bwameth | generate fasta index | download bwameth index | collecthsmetrics": {
         "content": [
@@ -150,7 +150,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:55:10.001932564"
+        "timestamp": "2025-10-21T22:29:37.653724166"
     },
     "Params: bwameth | generate fasta index | generate bwameth mem2 index": {
         "content": [
@@ -201,7 +201,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:55:03.085892754"
+        "timestamp": "2025-10-21T22:29:28.22041465"
     },
     "Params: bismark | download bismark index (bowtie2)": {
         "content": [
@@ -261,7 +261,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:53:57.304989914"
+        "timestamp": "2025-10-21T22:27:58.991145888"
     },
     "Params: bwameth | generate fasta index | download bwameth mem2 index | collecthsmetrics": {
         "content": [
@@ -312,7 +312,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:55:16.817726661"
+        "timestamp": "2025-10-21T22:29:47.265796536"
     },
     "Params: bwameth | generate fasta index | download bwameth mem2 index": {
         "content": [
@@ -363,7 +363,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:54:48.244071885"
+        "timestamp": "2025-10-21T22:29:07.909994921"
     },
     "Params: bwameth | generate fasta index | generate bwameth index": {
         "content": [
@@ -414,7 +414,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:54:55.205128637"
+        "timestamp": "2025-10-21T22:29:17.685324552"
     },
     "Params: bismark_hisat | generate bismark index (hisat2)": {
         "content": [
@@ -478,7 +478,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:54:21.879254265"
+        "timestamp": "2025-10-21T22:28:31.27723812"
     },
     "Params: bismark_hisat | download bismark index (hisat2)": {
         "content": [
@@ -542,7 +542,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:54:15.523551748"
+        "timestamp": "2025-10-21T22:28:22.34377813"
     },
     "Params: bwameth | download fasta index | download bwameth index": {
         "content": [
@@ -593,7 +593,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:54:28.152242843"
+        "timestamp": "2025-10-21T22:28:40.273456165"
     },
     "Params: bwameth | download fasta index | download bwameth mem2 index": {
         "content": [
@@ -643,7 +643,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:54:34.434835743"
+        "timestamp": "2025-10-21T22:28:48.948079654"
     },
     "Params: bwamem | generate fasta index | generate bwamem index": {
         "content": [
@@ -693,7 +693,7 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T10:55:23.700638588"
+        "timestamp": "2025-10-21T22:29:56.687795749"
     },
     "Params: bismark | generate bismark index (bowtie2)": {
         "content": [
@@ -751,8 +751,8 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.6"
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-09-30T15:20:44.974184664"
+        "timestamp": "2025-10-21T22:28:13.532582524"
     }
 }
