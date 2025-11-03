@@ -20,6 +20,7 @@ workflow TARGETED_SEQUENCING {
     ch_fasta_index         // channel: [ val(meta), /path/to/genome.fa.fai]
     ch_bam                 // channel: [ val(meta), [ bam ] ] ## BAM from alignment
     ch_bai                 // channel: [ val(meta), [ bai ] ] ## BAI from alignment
+    ch_gzi                 // channel: [ val(meta), [ gzi ] ] ## GZI from fasta
     collecthsmetrics       // boolean: whether to run Picard CollectHsMetrics
 
     main:
@@ -80,18 +81,21 @@ workflow TARGETED_SEQUENCING {
             .combine(ch_fasta)
             .combine(ch_fasta_index)
             .combine(ch_sequence_dictionary)
-            .multiMap { meta, bam, bai, intervals1, intervals2, meta_fasta, fasta, meta_fasta_index, fasta_index, meta_dict, dict ->
+            .combine(ch_gzi)
+            .multiMap { meta, bam, bai, intervals1, intervals2, meta_fasta, fasta, meta_fasta_index, fasta_index, meta_dict, dict, meta_gzi, gzi ->
                 bam_etc: [ meta, bam, bai, intervals1, intervals2 ] // intervals: baits, targets
                 fasta: [ meta_fasta, fasta ]
                 fasta_index: [ meta_fasta_index, fasta_index ]
                 dict: [ meta_dict, dict ]
+                gzi : [ meta_gzi, gzi ]
             }
 
         PICARD_COLLECTHSMETRICS(
             ch_picard_inputs.bam_etc,
             ch_picard_inputs.fasta,
             ch_picard_inputs.fasta_index,
-            ch_picard_inputs.dict
+            ch_picard_inputs.dict,
+            ch_picard_inputs.gzi
         )
         ch_picard_metrics = PICARD_COLLECTHSMETRICS.out.metrics
         ch_versions = ch_versions.mix(PICARD_COLLECTHSMETRICS.out.versions)

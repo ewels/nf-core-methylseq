@@ -49,6 +49,7 @@ workflow METHYLSEQ {
     ch_reads         = Channel.empty()
     ch_bam           = Channel.empty()
     ch_bai           = Channel.empty()
+    ch_gzi           = Channel.empty()
     ch_bedgraph      = Channel.empty()
     ch_aligner_mqc   = Channel.empty()
     ch_qualimap      = Channel.empty()
@@ -285,6 +286,7 @@ workflow METHYLSEQ {
             ch_fasta_index,
             ch_bam,
             ch_bai,
+            ch_gzi,
             params.collecthsmetrics
         )
         ch_versions = ch_versions.mix(TARGETED_SEQUENCING.out.versions)
