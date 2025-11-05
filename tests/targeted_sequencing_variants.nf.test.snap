@@ -48,7 +48,7 @@
                     "pigz": 2.8
                 },
                 "Workflow": {
-                    "nf-core/methylseq": "v4.1.0"
+                    "nf-core/methylseq": "v4.2.0dev"
                 }
             },
             [
@@ -368,7 +368,7 @@
                     "pigz": 2.8
                 },
                 "Workflow": {
-                    "nf-core/methylseq": "v4.1.0"
+                    "nf-core/methylseq": "v4.2.0dev"
                 }
             },
             [
@@ -456,6 +456,7 @@
                 "enrichment_metrics/SRR389222_sub1.CollectHsMetrics.coverage_metrics",
                 "enrichment_metrics/SRR389222_sub2.CollectHsMetrics.coverage_metrics",
                 "enrichment_metrics/SRR389222_sub3.CollectHsMetrics.coverage_metrics",
+                "enrichment_metrics/genome_target_regions.intervallist",
                 "fastqc",
                 "fastqc/Ecoli_10K_methylated_1_fastqc.html",
                 "fastqc/Ecoli_10K_methylated_2_fastqc.html",
@@ -786,7 +787,7 @@
                     "pigz": 2.8
                 },
                 "Workflow": {
-                    "nf-core/methylseq": "v4.1.0"
+                    "nf-core/methylseq": "v4.2.0dev"
                 }
             },
             [
@@ -1194,7 +1195,7 @@
                     "pigz": 2.8
                 },
                 "Workflow": {
-                    "nf-core/methylseq": "v4.1.0"
+                    "nf-core/methylseq": "v4.2.0dev"
                 }
             },
             [
@@ -1232,6 +1233,7 @@
                 "enrichment_metrics/SRR389222_sub1.CollectHsMetrics.coverage_metrics",
                 "enrichment_metrics/SRR389222_sub2.CollectHsMetrics.coverage_metrics",
                 "enrichment_metrics/SRR389222_sub3.CollectHsMetrics.coverage_metrics",
+                "enrichment_metrics/genome_target_regions.intervallist",
                 "fastqc",
                 "fastqc/Ecoli_10K_methylated_1_fastqc.html",
                 "fastqc/Ecoli_10K_methylated_2_fastqc.html",
@@ -1528,7 +1530,7 @@
                     "pigz": 2.8
                 },
                 "Workflow": {
-                    "nf-core/methylseq": "v4.1.0"
+                    "nf-core/methylseq": "v4.2.0dev"
                 }
             },
             [
