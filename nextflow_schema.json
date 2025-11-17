@@ -729,6 +729,9 @@
             "$ref": "#/$defs/bwameth_options"
         },
         {
+            "$ref": "#/$defs/methyldackel_options"
+        },
+        {
             "$ref": "#/$defs/bwamem_options"
         },
         {
