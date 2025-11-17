@@ -276,6 +276,9 @@ workflow METHYLSEQ {
     // skipped by default. to use run with `--run_targeted_sequencing` param.
     //
     if (params.run_targeted_sequencing){
+        if (params.taps || params.aligner == 'bwamem') {
+            error "ERROR: --run_targeted_sequencing can't be running using rastair (methylation caller for TAPS) "
+        }
         if (!params.target_regions_file) {
             error "ERROR: --target_regions_file must be specified when using --run_targeted_sequencing"
         }

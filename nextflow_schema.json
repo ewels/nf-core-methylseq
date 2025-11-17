@@ -118,6 +118,13 @@
                     "help_text": "Directory for a bwa-meth genome reference index. Only used when using the bwa-meth aligner.\n\nNote that this is not a complete path, but the directory containing the reference. For example, if you have file paths such as `/path/to/ref/genome.fa.bwameth.c2t.bwt`, you should specify `/path/to/ref/`.",
                     "fa_icon": "far fa-dot-circle"
                 },
+                "bwamem_index": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to the BWA-MEM index filename base",
+                    "help_text": "Directory for a bwa-mem genome reference index. Only used when using the bwa-mem aligner.\n\nNote that this is not a complete path, but the directory containing the reference. For example, if you have file paths such as `/path/to/ref/genome.fa.bwamem.c2t.bwt`, you should specify `/path/to/ref/`.",
+                    "fa_icon": "far fa-dot-circle"
+                },
                 "igenomes_ignore": {
                     "type": "boolean",
                     "description": "Do not load the iGenomes reference config.",
@@ -379,9 +386,17 @@
             }
         },
         "bwameth_options": {
-            "title": "bwa-meth options",
+            "title": "bwa-meth pipeline options",
             "type": "object",
-            "description": "",
+            "description": "Parameters specific to BWA Meth aligning steps",
+            "default": "",
+            "properties": {
+            }
+        },
+        "methyldackel_options": {
+            "title": "MethylDackel options",
+            "type": "object",
+            "description": "Parameters specific to MethylDackel methylation calling step",
             "default": "",
             "properties": {
                 "all_contexts": {
@@ -418,16 +433,11 @@
             "fa_icon": "far fa-circle"
         },
         "bwamem_options": {
-            "title": "bwa-mem options",
+            "title": "bwa-mem pipeline options for rastair",
             "type": "object",
-            "description": "Parameters specific to BWA Mem indexing or aligning steps",
+            "description": "Parameters specific to BWA Mem aligning steps",
             "default": "",
             "properties": {
-                "bwamem_index": {
-                    "type": "string",
-                    "format": "file-path",
-                    "description": "Path to the BWA-MEM index filename base"
-                }
             }
         },
         "rastair_options": {
@@ -448,7 +458,8 @@
                     "description": "Nucleotides to exclude from methylation calling on Original Bottom (strand) reads, following this pattern: R1 start, R1 end, R2 start, R2 end"
                 }
             }
-        },        "qualimap_options": {
+        },
+        "qualimap_options": {
             "title": "Qualimap Options",
             "type": "object",
             "description": "Qualimap configurations",

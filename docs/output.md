@@ -105,25 +105,20 @@ bwamem/
 │   ├── nf_core_methylseq_software_mqc_versions.yml
 │   ├── params_2024-12-13_05-36-43.json
 │   └── pipeline_dag_2024-12-13_05-36-34.html
+├── rastair
+│   ├── call
+│   |   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_call.tsv
+│   ├── mbias
+│   |   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias.tsv
+│   ├── mbias_parser
+│   │   ├── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.txt
+│   │   ├── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.csv
+│   │   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.pdf
+│   ├── methylkit
+|   │   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_methylkit.txt.gz
 └── trimgalore
     ├── fastqc
     └── logs
-```
-
-#### rastair
-
-```
-rastair
-├── call
-|   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_call.tsv
-├── mbias
-|   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias.tsv
-├── mbias_parser
-│   ├── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.txt
-│   ├── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.csv
-│   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.pdf
-├── methylkit
-|   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_methylkit.txt.gz
 ```
 
 ### Detailed Output Descriptions
@@ -216,7 +211,14 @@ _Note that bismark can use either use Bowtie2 (default) or HISAT2 as alignment t
   - Summary file giving lots of metrics about the aligned BAM file.
 
 **bwa-mem output directory: `results/bwamem/alignments/`**
-# TODO
+- `sample.bam`
+  - Aligned reads in BAM format.
+- `sample.bam.bai`
+  - Index of BAM file
+- `samtools_stats/sample.flagstat`
+  - Summary file describing the number of reads which aligned in different ways.
+- `samtools_stats/sample.stats`
+  - Summary file giving lots of metrics about the aligned BAM file.
 
 ### Deduplication
 
@@ -241,7 +243,16 @@ This step removes alignments with identical mapping position to avoid technical 
   - Log file giving summary statistics about deduplication.
 
 **bwa-mem output directory: `results/bwamem/deduplicated/`**
-# TODO
+- `sample.deduplicated.sorted.bam`
+  - Sorted BAM file with only unique alignments.
+- `sample.deduplicated.sorted.bam.bai`
+  - Index for sorted and deduped BAM file.
+- `sample.markdup.sorted.bam`
+  - BAM file with duplicated reads marked.
+- `sample.markdup.sorted.bam.bai`
+  - BAM file with duplicated reads marked.
+- `picard_metrics/sample.markdup.sorted.MarkDuplicates.metrics.txt`
+  - Log file giving summary statistics about deduplication.
 
 ### Methylation Extraction
 
@@ -279,7 +290,19 @@ Filename abbreviations stand for the following reference alignment strands:
   - Methylation statuses in [bedGraph](http://genome.ucsc.edu/goldenPath/help/bedgraph.html) format.
 
 **bwa-mem / TAPS workflow output directory: `results/rastair/`**
-# TODO
+
+- `call/samples.markdup.sorted_CpG.rastair_call.tsv`
+  - Individual methylation calls file sorted by genomic coordinates and including cytosine context.
+- `mbias/sample.markdup.sorted_CpG.rastair_mbias.tsv`
+  - Average conversion rate per position on the read per read pair (R1 and R2) original strand (OT, OB).
+- `mbias_parser/sample.markdup.sorted_CpG.rastair_mbias_processed.txt`
+  - File reporting the dynamic trimming to be passed to the rastair/call process
+- `mbias_parser/sample.markdup.sorted_CpG.rastair_mbias_processed.csv`
+  - File reporting the dynamic trimming to be passed to the rastair/call process
+- `mbias_parser/sample.markdup.sorted_CpG.rastair_mbias_processed.pdf`
+  - PDF file with the plot reporting the mbias and dynamic trimming selected for the sample
+- `methylkit/sample.markdup.sorted_CpG.rastair_methylkit.txt.gz`
+  - Individual methylation calls in a format digestible by MethytlKit R package.
 
 ### Targeted Sequencing
 
@@ -291,7 +314,6 @@ BedGraph files are filtered using the BED file passed to `--target_regions_file`
 
 **Bismark output directory: `results/bismark/methylation_calls/bedGraph/`**
 **bwa-meth output directory: `results/methyldackel/`**
-# TODO: implement filtering by `--target_regions_file` in bwa-mem
 
 - `*.targeted.bedGraph`
   - Methylation statuses in [bedGraph](http://genome.ucsc.edu/goldenPath/help/bedgraph.html) format, limited to the positions in the target regions BED file.
@@ -304,10 +326,6 @@ BedGraph files are filtered using the BED file passed to `--target_regions_file`
 
 - `*.CollectHsMetrics.coverage_metrics`
   - Text-based statistics showed also in the MultiQC report.
-
-
-### Rastair
-# TODO
 
 ### Bismark Reports
 
