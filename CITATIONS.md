@@ -36,7 +36,7 @@
 - [BWA-MEM](https://arxiv.org/abs/1303.3997v2)
 
   > Li H: Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM. arXiv 2013. doi: 10.48550/arXiv.1303.3997
-  
+
 - [bwa-meth](https://arxiv.org/abs/1401.1129)
 
   > Pedersen, Brent S. and Eyring, Kenneth and De, Subhajyoti and Yang, Ivana V. and Schwartz, David A. Fast and accurate alignment of long bisulfite-seq reads, arXiv:1401.1129, doi: [10.48550/arXiv.1401.1129](https://doi.org/10.48550/arXiv.1401.1129)

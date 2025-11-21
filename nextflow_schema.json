@@ -390,8 +390,7 @@
             "type": "object",
             "description": "Parameters specific to BWA Meth aligning steps",
             "default": "",
-            "properties": {
-            }
+            "properties": {}
         },
         "methyldackel_options": {
             "title": "MethylDackel options",
@@ -437,8 +436,7 @@
             "type": "object",
             "description": "Parameters specific to BWA Mem aligning steps",
             "default": "",
-            "properties": {
-            }
+            "properties": {}
         },
         "rastair_options": {
             "title": "rastair options",

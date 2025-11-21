@@ -211,6 +211,7 @@ _Note that bismark can use either use Bowtie2 (default) or HISAT2 as alignment t
   - Summary file giving lots of metrics about the aligned BAM file.
 
 **bwa-mem output directory: `results/bwamem/alignments/`**
+
 - `sample.bam`
   - Aligned reads in BAM format.
 - `sample.bam.bai`
@@ -243,6 +244,7 @@ This step removes alignments with identical mapping position to avoid technical 
   - Log file giving summary statistics about deduplication.
 
 **bwa-mem output directory: `results/bwamem/deduplicated/`**
+
 - `sample.deduplicated.sorted.bam`
   - Sorted BAM file with only unique alignments.
 - `sample.deduplicated.sorted.bam.bai`

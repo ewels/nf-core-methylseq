@@ -111,7 +111,7 @@ workflow METHYLSEQ {
     if (params.taps & params.aligner != 'bwamem') {
         log.info "TAPS protocol detected and aligner is not 'bwamem'. We recommend using bwa-mem for TAPS protocol as it is optimized for this type of data."
         // params.aligner = 'bwamem'
-    } 
+    }
 
     // Aligner: bismark or bismark_hisat
     if (params.aligner =~ /bismark/ ) {
@@ -181,7 +181,7 @@ workflow METHYLSEQ {
                 fasta_index: [ meta_fasta_index, fasta_index ]
                 bwamem_index: [ meta_bwamem, bwamem_index ]
             }
-        
+
         FASTQ_ALIGN_DEDUP_BWAMEM (
             ch_bwamem_inputs.reads,
             ch_bwamem_inputs.fasta,
@@ -197,7 +197,7 @@ workflow METHYLSEQ {
         ch_bai         = FASTQ_ALIGN_DEDUP_BWAMEM.out.bai
         ch_aligner_mqc = FASTQ_ALIGN_DEDUP_BWAMEM.out.multiqc
         ch_versions    = ch_versions.mix(FASTQ_ALIGN_DEDUP_BWAMEM.out.versions.unique{ it.baseName })
-    }   
+    }
 
     else {
         error "ERROR: Invalid aligner '${params.aligner}'. Valid options are: 'bismark', 'bismark_hisat', 'bwameth' or 'bwamem'."
@@ -245,7 +245,7 @@ workflow METHYLSEQ {
                 fasta:       [ meta, fasta ]    // use sample meta so subworkflow aligns properly
                 fasta_index: [ meta, fai ]      // same here
             }
-    
+
         BAM_METHYLDACKEL (
             ch_methyldackel_inputs.bam,
             ch_methyldackel_inputs.bai,
