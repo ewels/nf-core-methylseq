@@ -151,7 +151,7 @@
     },
     "Params: bwameth with bwameth-index": {
         "content": [
-            41,
+            47,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -203,6 +203,6 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-10-21T21:54:10.61414021"
+        "timestamp": "2025-11-21T11:31:35.93955968"
     }
 }
