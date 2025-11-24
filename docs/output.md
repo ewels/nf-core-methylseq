@@ -6,7 +6,7 @@ This document describes the output produced by the methylseq pipeline.
 
 Most of the plots are taken from the MultiQC report, which summarizes results at the end of the pipeline.
 
-> NOTE: nf-core/methylseq contains two workflows - one for Bismark, one for bwa-meth. The results files produced will vary depending on which variant is run.
+> NOTE: nf-core/methylseq contains three alignment workflows - one for Bismark, one for bwa-meth and one for bwa-mem. On top of that, there is an extra workflow to process conversion rates from TAPS data (protocol for positive methylation reading) through Rastair. The results files produced will vary depending on which variant is run.
 
 The output directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
@@ -80,6 +80,42 @@ bwameth/
 │   ├── nf_core_methylseq_software_mqc_versions.yml
 │   ├── params_2024-12-13_05-36-43.json
 │   └── pipeline_dag_2024-12-13_05-36-34.html
+└── trimgalore
+    ├── fastqc
+    └── logs
+```
+
+#### bwa-mem
+
+```
+bwamem/
+├── bwamem
+│   ├── alignments
+│   └── deduplicated
+├── fastqc
+│   ├── Ecoli_10K_methylated_1_fastqc.html
+│   ├── Ecoli_10K_methylated_2_fastqc.html
+│   └── zips
+├── multiqc
+│   └── bwamem
+├── pipeline_info
+│   ├── execution_report_2024-12-13_05-36-34.html
+│   ├── execution_timeline_2024-12-13_05-36-34.html
+│   ├── execution_trace_2024-12-13_05-36-34.txt
+│   ├── nf_core_methylseq_software_mqc_versions.yml
+│   ├── params_2024-12-13_05-36-43.json
+│   └── pipeline_dag_2024-12-13_05-36-34.html
+├── rastair
+│   ├── call
+│   |   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_call.tsv
+│   ├── mbias
+│   |   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias.tsv
+│   ├── mbias_parser
+│   │   ├── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.txt
+│   │   ├── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.csv
+│   │   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.pdf
+│   ├── methylkit
+|   │   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_methylkit.txt.gz
 └── trimgalore
     ├── fastqc
     └── logs
@@ -174,6 +210,17 @@ _Note that bismark can use either use Bowtie2 (default) or HISAT2 as alignment t
 - `logs/samtools_stats/sample_stats.txt`
   - Summary file giving lots of metrics about the aligned BAM file.
 
+**bwa-mem output directory: `results/bwamem/alignments/`**
+
+- `sample.bam`
+  - Aligned reads in BAM format.
+- `sample.bam.bai`
+  - Index of BAM file
+- `samtools_stats/sample.flagstat`
+  - Summary file describing the number of reads which aligned in different ways.
+- `samtools_stats/sample.stats`
+  - Summary file giving lots of metrics about the aligned BAM file.
+
 ### Deduplication
 
 This step removes alignments with identical mapping position to avoid technical duplication in the results. Note that it is skipped if `--save_align_intermeds`, `--skip_deduplication` or `--rrbs` is specified when running the pipeline.
@@ -194,6 +241,19 @@ This step removes alignments with identical mapping position to avoid technical 
 - `sample.sorted.markDups.bam.bai`
   - Index for markDups BAM file.
 - `logs/sample.sorted.markDups_metrics.txt`
+  - Log file giving summary statistics about deduplication.
+
+**bwa-mem output directory: `results/bwamem/deduplicated/`**
+
+- `sample.deduplicated.sorted.bam`
+  - Sorted BAM file with only unique alignments.
+- `sample.deduplicated.sorted.bam.bai`
+  - Index for sorted and deduped BAM file.
+- `sample.markdup.sorted.bam`
+  - BAM file with duplicated reads marked.
+- `sample.markdup.sorted.bam.bai`
+  - BAM file with duplicated reads marked.
+- `picard_metrics/sample.markdup.sorted.MarkDuplicates.metrics.txt`
   - Log file giving summary statistics about deduplication.
 
 ### Methylation Extraction
@@ -230,6 +290,21 @@ Filename abbreviations stand for the following reference alignment strands:
 
 - `sample.bedGraph`
   - Methylation statuses in [bedGraph](http://genome.ucsc.edu/goldenPath/help/bedgraph.html) format.
+
+**bwa-mem / TAPS workflow output directory: `results/rastair/`**
+
+- `call/samples.markdup.sorted_CpG.rastair_call.tsv`
+  - Individual methylation calls file sorted by genomic coordinates and including cytosine context.
+- `mbias/sample.markdup.sorted_CpG.rastair_mbias.tsv`
+  - Average conversion rate per position on the read per read pair (R1 and R2) original strand (OT, OB).
+- `mbias_parser/sample.markdup.sorted_CpG.rastair_mbias_processed.txt`
+  - File reporting the dynamic trimming to be passed to the rastair/call process
+- `mbias_parser/sample.markdup.sorted_CpG.rastair_mbias_processed.csv`
+  - File reporting the dynamic trimming to be passed to the rastair/call process
+- `mbias_parser/sample.markdup.sorted_CpG.rastair_mbias_processed.pdf`
+  - PDF file with the plot reporting the mbias and dynamic trimming selected for the sample
+- `methylkit/sample.markdup.sorted_CpG.rastair_methylkit.txt.gz`
+  - Individual methylation calls in a format digestible by MethytlKit R package.
 
 ### Targeted Sequencing
 

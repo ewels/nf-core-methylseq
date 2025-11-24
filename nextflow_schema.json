@@ -118,6 +118,13 @@
                     "help_text": "Directory for a bwa-meth genome reference index. Only used when using the bwa-meth aligner.\n\nNote that this is not a complete path, but the directory containing the reference. For example, if you have file paths such as `/path/to/ref/genome.fa.bwameth.c2t.bwt`, you should specify `/path/to/ref/`.",
                     "fa_icon": "far fa-dot-circle"
                 },
+                "bwamem_index": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to the BWA-MEM index filename base",
+                    "help_text": "Directory for a bwa-mem genome reference index. Only used when using the bwa-mem aligner.\n\nNote that this is not a complete path, but the directory containing the reference. For example, if you have file paths such as `/path/to/ref/genome.fa.bwamem.c2t.bwt`, you should specify `/path/to/ref/`.",
+                    "fa_icon": "far fa-dot-circle"
+                },
                 "igenomes_ignore": {
                     "type": "boolean",
                     "description": "Do not load the iGenomes reference config.",
@@ -146,12 +153,11 @@
                     "default": "bismark",
                     "description": "Alignment tool to use.",
                     "fa_icon": "fas fa-dot-circle",
-                    "enum": ["bismark", "bismark_hisat", "bwameth"],
+                    "enum": ["bismark", "bismark_hisat", "bwameth", "bwamem"],
                     "help_text": "The nf-core/methylseq package is actually two pipelines in one. The default workflow uses [Bismark](http://www.bioinformatics.babraham.ac.uk/projects/bismark/) with [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) as alignment tool: unless specified otherwise, nf-core/methylseq will run this pipeline.\n\nSince bismark v0.21.0 it is also possible to use [HISAT2](https://ccb.jhu.edu/software/hisat2/index.shtml) as alignment tool. To run this workflow, invoke the pipeline with the command line flag `--aligner bismark_hisat`. HISAT2 also supports splice-aware alignment if analysis of RNA is desired (e.g. [SLAMseq](https://science.sciencemag.org/content/360/6390/800) experiments), a file containing a list of known splicesites can be provided with `--known_splices`.\n\nThe second workflow uses [BWA-Meth](https://github.com/brentp/bwa-meth) and [MethylDackel](https://github.com/dpryan79/methyldackel) instead of Bismark. To run this workflow, run the pipeline with the command line flag `--aligner bwameth`."
                 },
                 "use_mem2": {
                     "type": "boolean",
-                    "default": false,
                     "description": "Use BWA-MEM2 algorithm for BWA-Meth indexing and alignment.",
                     "fa_icon": "fas fa-forward",
                     "help_text": "When using the BWA-Meth aligner (`--aligner bwameth`), this parameter enables the BWA-MEM2 algorithm which can provide improved performance and accuracy. The BWA-MEM2 algorithm is a drop-in replacement for BWA-MEM that is generally faster and more accurate. This option only applies when using BWA-Meth aligner."
@@ -166,6 +172,12 @@
             "description": "Presets for working with specific bisulfite library preparation methods.",
             "default": "",
             "properties": {
+                "taps": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-outdent",
+                    "description": "Preset for working with TET-assisted pyridine borane sequencing (TAPS) libraries.",
+                    "help_text": "Specify this parameter when working with TAPS libraries.\n\nThis is also set if you set the aligner to `bwamem`."
+                },
                 "pbat": {
                     "type": "boolean",
                     "fa_icon": "fas fa-outdent",
@@ -254,7 +266,6 @@
                 "skip_trimming_presets": {
                     "type": "boolean",
                     "description": "Skip presetting trimming parameters entirely",
-                    "default": false,
                     "fa_icon": "fas fa-dot-circle"
                 }
             },
@@ -375,9 +386,16 @@
             }
         },
         "bwameth_options": {
-            "title": "bwa-meth options",
+            "title": "bwa-meth pipeline options",
             "type": "object",
-            "description": "",
+            "description": "Parameters specific to BWA Meth aligning steps",
+            "default": "",
+            "properties": {}
+        },
+        "methyldackel_options": {
+            "title": "MethylDackel options",
+            "type": "object",
+            "description": "Parameters specific to MethylDackel methylation calling step",
             "default": "",
             "properties": {
                 "all_contexts": {
@@ -412,6 +430,32 @@
                 }
             },
             "fa_icon": "far fa-circle"
+        },
+        "bwamem_options": {
+            "title": "bwa-mem pipeline options for rastair",
+            "type": "object",
+            "description": "Parameters specific to BWA Mem aligning steps",
+            "default": "",
+            "properties": {}
+        },
+        "rastair_options": {
+            "title": "rastair options",
+            "type": "object",
+            "description": "Parameters specific to the RASTAIR workflow",
+            "default": "",
+            "fa_icon": "fas fa-robot",
+            "properties": {
+                "trim_OT": {
+                    "type": "string",
+                    "default": "0,0,10,0",
+                    "description": "Nucleotides to exclude from methylation calling on Original Top (strand) reads, following this pattern: R1 start, R1 end, R2 start, R2 end"
+                },
+                "trim_OB": {
+                    "type": "string",
+                    "default": "0,0,10,0",
+                    "description": "Nucleotides to exclude from methylation calling on Original Bottom (strand) reads, following this pattern: R1 start, R1 end, R2 start, R2 end"
+                }
+            }
         },
         "qualimap_options": {
             "title": "Qualimap Options",
@@ -681,6 +725,15 @@
         },
         {
             "$ref": "#/$defs/bwameth_options"
+        },
+        {
+            "$ref": "#/$defs/methyldackel_options"
+        },
+        {
+            "$ref": "#/$defs/bwamem_options"
+        },
+        {
+            "$ref": "#/$defs/rastair_options"
         },
         {
             "$ref": "#/$defs/qualimap_options"
