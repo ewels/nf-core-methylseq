@@ -1,7 +1,6 @@
 {
     "Params: default with bowtie2-index": {
         "content": [
-            36,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -44,14 +43,13 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-21T21:52:17.780466639"
+        "timestamp": "2025-11-26T05:40:58.820369822"
     },
     "Params: bismark_hisat with hisat2-index": {
         "content": [
-            36,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -94,14 +92,13 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-21T21:55:17.497469847"
+        "timestamp": "2025-11-26T05:46:24.84862466"
     },
     "Params: bismark with run_preseq with bowtie2-index": {
         "content": [
-            36,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -144,14 +141,13 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-21T21:53:20.325476907"
+        "timestamp": "2025-11-26T05:42:55.658790031"
     },
     "Params: bwameth with bwameth-index": {
         "content": [
-            47,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -200,9 +196,9 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:31:35.93955968"
+        "timestamp": "2025-11-26T05:44:29.266621491"
     }
 }

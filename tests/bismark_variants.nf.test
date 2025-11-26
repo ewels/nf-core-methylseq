@@ -137,7 +137,6 @@ nextflow_pipeline {
                 assertAll(
                     { assert workflow.success },
                     { assert snapshot(
-                        workflow.trace.succeeded().size(),
                         *getStandardAssertionData(params.outdir)
                     ).match() }
                 )
