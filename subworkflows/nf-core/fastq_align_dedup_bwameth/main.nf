@@ -19,13 +19,13 @@ workflow FASTQ_ALIGN_DEDUP_BWAMETH {
 
     main:
 
-    ch_alignment                     = Channel.empty()
-    ch_alignment_index               = Channel.empty()
-    ch_samtools_flagstat             = Channel.empty()
-    ch_samtools_stats                = Channel.empty()
-    ch_picard_metrics                = Channel.empty()
-    ch_multiqc_files                 = Channel.empty()
-    ch_versions                      = Channel.empty()
+    ch_alignment                     = channel.empty()
+    ch_alignment_index               = channel.empty()
+    ch_samtools_flagstat             = channel.empty()
+    ch_samtools_stats                = channel.empty()
+    ch_picard_metrics                = channel.empty()
+    ch_multiqc_files                 = channel.empty()
+    ch_versions                      = channel.empty()
 
     /*
      * Align with bwameth
