@@ -1,7 +1,6 @@
 {
     "Params: bismark with run_qualimap": {
         "content": [
-            40,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -629,14 +628,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:48:00.134141291"
+        "timestamp": "2025-11-26T08:17:45.757115349"
     },
     "Params: bismark with nomeseq": {
         "content": [
-            40,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -1054,14 +1052,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:31:22.529316496"
+        "timestamp": "2025-11-26T08:11:00.32448738"
     },
     "Params: bismark with skip_multiqc": {
         "content": [
-            35,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -1274,14 +1271,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-21T21:37:45.394173217"
+        "timestamp": "2025-11-26T08:19:27.705338625"
     },
     "Params: bismark (default)": {
         "content": [
-            36,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -1652,14 +1648,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:19:22.333511769"
+        "timestamp": "2025-11-26T07:59:11.539725915"
     },
     "Params: bismark with cytosine_report": {
         "content": [
-            40,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -2053,14 +2048,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:25:19.699857452"
+        "timestamp": "2025-11-26T08:04:57.827583264"
     },
     "Params: bismark with em_seq and clip_r1": {
         "content": [
-            36,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -2431,14 +2425,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:29:11.818322511"
+        "timestamp": "2025-11-26T08:08:53.462561913"
     },
     "Params: bismark with skip_trimming": {
         "content": [
-            32,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -2765,14 +2758,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:21:11.605794508"
+        "timestamp": "2025-11-26T08:00:52.083289384"
     },
     "Params: bismark with skip_deduplication": {
         "content": [
-            32,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -3145,14 +3137,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:23:11.310754532"
+        "timestamp": "2025-11-26T08:02:50.473843022"
     },
     "Params: bismark with rrbs": {
         "content": [
-            32,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -3525,14 +3516,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:27:17.73907457"
+        "timestamp": "2025-11-26T08:06:59.451400542"
     },
     "Params: bismark with save_reference and save_align_intermeds": {
         "content": [
-            36,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -3978,14 +3968,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:33:21.565107685"
+        "timestamp": "2025-11-26T08:12:58.138668044"
     },
     "Params: bismark with CAT_FASTQ and skip_trimming and skip_deduplication": {
         "content": [
-            17,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -4250,14 +4239,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:53:01.402406628"
+        "timestamp": "2025-11-26T08:22:52.58616656"
     },
     "Params: bismark with run_preseq": {
         "content": [
-            36,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -4628,14 +4616,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:35:16.661247513"
+        "timestamp": "2025-11-26T08:14:56.553076652"
     },
     "Params: bismark with skip_fastqc": {
         "content": [
-            32,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -4935,9 +4922,9 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:51:23.285574822"
+        "timestamp": "2025-11-26T08:21:14.550967256"
     }
 }

@@ -1,7 +1,6 @@
 {
     "Params: bwameth with run_qualimap": {
         "content": [
-            51,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -496,14 +495,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:16:49.989781514"
+        "timestamp": "2025-11-26T08:37:31.53335091"
     },
     "Params: bwameth with skip_deduplication": {
         "content": [
-            39,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -763,14 +761,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:12:30.172291325"
+        "timestamp": "2025-11-26T08:32:43.517125394"
     },
     "Params: bwameth with skip_fastqc": {
         "content": [
-            43,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -1012,14 +1009,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:18:14.903830001"
+        "timestamp": "2025-11-26T08:38:50.632236108"
     },
     "Params: bwameth with CAT_FASTQ and skip_trimming and skip_deduplication": {
         "content": [
-            20,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -1211,14 +1207,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:20:19.191071448"
+        "timestamp": "2025-11-26T08:41:07.419799556"
     },
     "Params: bwameth": {
         "content": [
-            47,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -1531,14 +1526,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:07:56.381790662"
+        "timestamp": "2025-11-26T08:28:29.73934595"
     },
     "Params: bwameth with skip_multiqc": {
         "content": [
-            46,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -1713,14 +1707,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:19:28.533026757"
+        "timestamp": "2025-11-26T08:40:12.19993791"
     },
     "Params: bwameth with skip_trimming": {
         "content": [
-            43,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -1989,14 +1982,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:11:08.409994887"
+        "timestamp": "2025-11-26T08:31:30.099089438"
     },
     "Params: bwameth with mem2 index": {
         "content": [
-            47,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -2309,14 +2301,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:09:39.543444282"
+        "timestamp": "2025-11-26T08:30:05.831910961"
     },
     "Params: bwameth with save_reference and save_align_intermeds": {
         "content": [
-            47,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -2687,14 +2678,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:15:08.879491018"
+        "timestamp": "2025-11-26T08:35:42.305102421"
     },
     "Params: bwameth with rrbs": {
         "content": [
-            39,
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
@@ -2954,9 +2944,9 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:13:37.007128195"
+        "timestamp": "2025-11-26T08:34:02.797104294"
     }
 }

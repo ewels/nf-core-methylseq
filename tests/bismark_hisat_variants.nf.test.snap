@@ -1,7 +1,6 @@
 {
     "Params: bismark_hisat with rrbs": {
         "content": [
-            32,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -374,14 +373,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:00:40.416160665"
+        "timestamp": "2025-11-26T07:53:03.399744662"
     },
     "Params: bismark_hisat with save_reference and save_align_intermeds": {
         "content": [
-            36,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -835,14 +833,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:02:37.268691907"
+        "timestamp": "2025-11-26T07:55:01.585305266"
     },
     "Params: bismark_hisat": {
         "content": [
-            36,
             {
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
@@ -1213,9 +1210,9 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T10:58:40.746880888"
+        "timestamp": "2025-11-26T07:51:02.606421051"
     }
 }

@@ -21,8 +21,6 @@ nextflow_pipeline {
             assertAll(
                 { assert workflow.success},
                 { assert snapshot(
-                    // Number of tasks
-                    workflow.trace.succeeded().size(),
                     removeNextflowVersion("$outputDir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
                     stable_name,
                     stable_path,

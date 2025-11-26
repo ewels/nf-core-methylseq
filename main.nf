@@ -49,16 +49,16 @@ workflow NFCORE_METHYLSEQ {
 
     main:
 
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     //
     // Initialize file channels or values based on params
     //
-    ch_fasta                = params.fasta         ? Channel.fromPath(params.fasta).map{ it -> [ [id:it.baseName], it ] } : Channel.empty()
-    ch_or_val_fasta_index   = params.fasta_index   ? Channel.fromPath(params.fasta_index).map{ it -> [ [id:it.baseName], it ] } : []
-    ch_or_val_bismark_index = params.bismark_index ? Channel.fromPath(params.bismark_index).map{ it -> [ [id:it.baseName], it ] } : []
-    ch_or_val_bwameth_index = params.bwameth_index ? Channel.fromPath(params.bwameth_index).map{ it -> [ [id:it.baseName], it ] } : []
-    ch_or_val_bwamem_index  = params.bwamem_index  ? Channel.fromPath(params.bwamem_index).map{ it -> [ [id:it.baseName], it ] } : []
+    ch_fasta                = params.fasta         ? channel.fromPath(params.fasta).map{ it -> [ [id:it.baseName], it ] } : channel.empty()
+    ch_or_val_fasta_index   = params.fasta_index   ? channel.fromPath(params.fasta_index).map{ it -> [ [id:it.baseName], it ] } : []
+    ch_or_val_bismark_index = params.bismark_index ? channel.fromPath(params.bismark_index).map{ it -> [ [id:it.baseName], it ] } : []
+    ch_or_val_bwameth_index = params.bwameth_index ? channel.fromPath(params.bwameth_index).map{ it -> [ [id:it.baseName], it ] } : []
+    ch_or_val_bwamem_index  = params.bwamem_index  ? channel.fromPath(params.bwamem_index).map{ it -> [ [id:it.baseName], it ] } : []
 
     //
     // SUBWORKFLOW: Prepare any required reference genome indices
@@ -112,7 +112,11 @@ workflow {
         params.validate_params,
         params.monochrome_logs,
         args,
-        params.outdir
+        params.outdir,
+        params.input,
+        params.help,
+        params.help_full,
+        params.show_hidden
     )
 
     //

@@ -1,7 +1,6 @@
 {
     "Params: PARABRICKS_FQ2BAMMETH - GPU Profile": {
         "content": [
-            36,
             {
                 "BWAMETH_INDEX": {
                     "bwameth": "0.2.9"

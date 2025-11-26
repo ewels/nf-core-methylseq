@@ -31,9 +31,9 @@ runs:
         version: "${{ env.NXF_VER }}"
 
     - name: Set up Python
-      uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5
+      uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6
       with:
-        python-version: "3.11"
+        python-version: "3.14"
 
     - name: Install nf-test
       uses: nf-core/setup-nf-test@v1
@@ -58,6 +58,8 @@ runs:
       with:
         auto-update-conda: true
         conda-solver: libmamba
+        channels: conda-forge
+        channel-priority: strict
         conda-remove-defaults: true
 
     - name: Run nf-test

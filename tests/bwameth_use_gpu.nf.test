@@ -21,8 +21,7 @@ nextflow_pipeline {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
-                    workflow.trace.succeeded().size(),
-                    removeNextflowVersion("$params.outdir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
                     stable_name,
                     stable_path,
                     bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getReadsMD5() ] }

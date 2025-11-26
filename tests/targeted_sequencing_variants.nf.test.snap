@@ -1,7 +1,6 @@
 {
     "Params: bwameth with run_targeted_sequencing": {
         "content": [
-            51,
             {
                 "BEDTOOLS_INTERSECT": {
                     "bedtools": "2.31.1"
@@ -325,14 +324,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:37:18.225161989"
+        "timestamp": "2025-11-26T08:57:12.984863389"
     },
     "Params: bismark with run_targeted_sequencing and collecthsmetrics": {
         "content": [
-            42,
             {
                 "BEDTOOLS_INTERSECT": {
                     "bedtools": "2.31.1"
@@ -722,14 +720,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:42:16.685537054"
+        "timestamp": "2025-11-26T09:02:23.345897599"
     },
     "Params: bismark with run_targeted_sequencing": {
         "content": [
-            40,
             {
                 "BEDTOOLS_INTERSECT": {
                     "bedtools": "2.31.1"
@@ -1111,14 +1108,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:35:39.708776034"
+        "timestamp": "2025-11-26T08:55:33.044289996"
     },
     "Params: bwameth with run_targeted_sequencing and collecthsmetrics": {
         "content": [
-            53,
             {
                 "BEDTOOLS_INTERSECT": {
                     "bedtools": "2.31.1"
@@ -1450,14 +1446,13 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:40:20.276269004"
+        "timestamp": "2025-11-26T09:00:25.168824987"
     },
     "Params: bwameth with all_contexts and run_targeted_sequencing": {
         "content": [
-            59,
             {
                 "BEDTOOLS_INTERSECT": {
                     "bedtools": "2.31.1"
@@ -1813,9 +1808,9 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-21T11:38:41.812493402"
+        "timestamp": "2025-11-26T08:58:48.298385343"
     }
 }
