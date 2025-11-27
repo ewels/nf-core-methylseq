@@ -138,28 +138,29 @@ The pipeline provides two alignment options for TAPS data:
 **Option 1: BWA-Meth + Rastair** (Recommended for existing workflows)
 
 ```bash
-nextflow run nf-core/methylseq --taps --aligner bwameth --methylation_caller rastair --input samplesheet.csv --genome GRCh38
+nextflow run nf-core/methylseq --taps --aligner bwameth --input samplesheet.csv --genome GRCh38
 ```
 
 **Option 2: BWA-MEM + Rastair** (Optimized for TAPS)
 
 ```bash
-nextflow run nf-core/methylseq --taps --aligner bwamem --methylation_caller rastair --input samplesheet.csv --genome GRCh38
+nextflow run nf-core/methylseq --taps --aligner bwamem --input samplesheet.csv --genome GRCh38
 ```
 
 #### TAPS-Specific Parameters
 
 - `--taps`: Enable TAPS data processing mode
 - `--aligner bwamem`: Use BWA-MEM aligner (optimized for TAPS)
-- `--methylation_caller rastair`: Use Rastair for TAPS conversion analysis
 
 #### Automatic Parameter Configuration
 
 When `--taps` is specified, the pipeline automatically:
 
-- Sets `--methylation_caller rastair` if not specified
+- Uses Rastair for methylation calling (TAPS conversion analysis)
 - Validates aligner compatibility (prevents using Bismark with TAPS data)
 - Configures appropriate deduplication (Picard MarkDuplicates for TAPS)
+
+Note: When using `--aligner bwamem`, Rastair is automatically used for methylation calling even without the `--taps` flag, as bwamem is optimized for TAPS data.
 
 #### GPU Support for TAPS
 
