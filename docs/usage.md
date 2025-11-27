@@ -118,7 +118,7 @@ nextflow run nf-core/methylseq --aligner bwameth --use_mem2 --profile gpu --inpu
 
 - `Parabricks/FQ2BAMMETH` (GPU-based): For higher performance, the pipeline can leverage the [Parabricks implementation of bwa-meth (fq2bammeth)](https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_fq2bam_meth.html), which implements the baseline tool `bwa-meth` in a performant method using fq2bam (BWA-MEM + GATK) as a backend for processing on GPU. To use this option, include the `gpu` profile (as in `--profile gpu`) along with `--aligner bwameth`.
 
-### Workflow: TAPS (TET-Assisted Pyridine borane Sequencing)
+### Workflow: BWA-MEM + TAPS (TET-Assisted Pyridine borane Sequencing)
 
 The pipeline supports **TAPS data analysis**, which uses a different approach to detect DNA methylation compared to traditional bisulfite sequencing. TAPS preserves the original DNA sequence while converting methylated cytosines to thymine, making it compatible with standard aligners.
 
@@ -131,26 +131,14 @@ The pipeline supports **TAPS data analysis**, which uses a different approach to
 | **Sequence Complexity**   | Reduced (C→T conversion)          | Preserved (original sequence)     |
 | **Aligner Compatibility** | Requires bisulfite-aware aligners | Compatible with standard aligners |
 
-#### TAPS Workflow Options
-
-The pipeline provides two alignment options for TAPS data:
-
-**Option 1: BWA-Meth + Rastair** (Recommended for existing workflows)
-
-```bash
-nextflow run nf-core/methylseq --taps --aligner bwameth --input samplesheet.csv --genome GRCh38
-```
-
-**Option 2: BWA-MEM + Rastair** (Optimized for TAPS)
+**BWA-MEM + Rastair** (Optimized for TAPS)
 
 ```bash
 nextflow run nf-core/methylseq --taps --aligner bwamem --input samplesheet.csv --genome GRCh38
 ```
 
-#### TAPS-Specific Parameters
-
-- `--taps`: Enable TAPS data processing mode
-- `--aligner bwamem`: Use BWA-MEM aligner (optimized for TAPS)
+> [!NOTE]
+> We recommend using bwa-mem for TAPS protocol as it is optimized for this type of data.
 
 #### Automatic Parameter Configuration
 
@@ -160,14 +148,15 @@ When `--taps` is specified, the pipeline automatically:
 - Validates aligner compatibility (prevents using Bismark with TAPS data)
 - Configures appropriate deduplication (Picard MarkDuplicates for TAPS)
 
-Note: When using `--aligner bwamem`, Rastair is automatically used for methylation calling even without the `--taps` flag, as bwamem is optimized for TAPS data.
+> [!NOTE]
+> When using `--aligner bwamem`, Rastair is automatically used for methylation calling even without the `--taps` flag, as bwamem is optimized for TAPS data.
 
 #### GPU Support for TAPS
 
 TAPS workflows support GPU acceleration:
 
 ```bash
-nextflow run nf-core/methylseq --taps --aligner bwameth --profile gpu --input samplesheet.csv --genome GRCh38
+nextflow run nf-core/methylseq --taps --aligner bwamem --profile gpu --input samplesheet.csv --genome GRCh38
 ```
 
 ### Targeted sequencing (optional)
