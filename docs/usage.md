@@ -10,7 +10,7 @@
 - [Requirements](#requirements)
 - [Workflow: Bismark](#workflow-bismark)
 - [Workflow: BWA-Meth](#workflow-bwa-meth)
-- [Workflow: TAPS](#workflow-taps-tet-assisted-pyridine-borane-sequencing)
+- [Workflow: BWA-MEM + TAPS](#workflow-bwa-mem-taps-tet-assisted-pyridine-borane-sequencing)
 - [Targeted sequencing (optional)](#targeted-sequencing-optional)
 - [Samplesheet input](#samplesheet-input)
 - [Running the pipeline](#running-the-pipeline)
@@ -131,12 +131,6 @@ The pipeline supports **TAPS data analysis**, which uses a different approach to
 | **Sequence Complexity**   | Reduced (C→T conversion)          | Preserved (original sequence)     |
 | **Aligner Compatibility** | Requires bisulfite-aware aligners | Compatible with standard aligners |
 
-**BWA-MEM + Rastair** (Optimized for TAPS)
-
-```bash
-nextflow run nf-core/methylseq --taps --aligner bwamem --input samplesheet.csv --genome GRCh38
-```
-
 > [!NOTE]
 > We recommend using bwa-mem for TAPS protocol as it is optimized for this type of data.
 
@@ -150,14 +144,6 @@ When `--taps` is specified, the pipeline automatically:
 
 > [!NOTE]
 > When using `--aligner bwamem`, Rastair is automatically used for methylation calling even without the `--taps` flag, as bwamem is optimized for TAPS data.
-
-#### GPU Support for TAPS
-
-TAPS workflows support GPU acceleration:
-
-```bash
-nextflow run nf-core/methylseq --taps --aligner bwamem --profile gpu --input samplesheet.csv --genome GRCh38
-```
 
 ### Targeted sequencing (optional)
 
