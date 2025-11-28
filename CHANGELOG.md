@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Pipeline Updates
 
 - ✨ Added TAPS (TET-assisted pyridine borane sequencing) analysis workflow [#574](https://github.com/nf-core/methylseq/pull/574)
+  - Added rastair modules
+  - Removed methyldackel modules from fastq_align_dedup_bwameth subworkflow
+  - Added bam_methyldackel subworkflow which runs methyldackel modules
+  - Added fasta_index_methylseq subworkflow which indexes genomes for bismark, bwa-meth or bwa mem
+  - Added bam_taps_conversion to run rastair modules for TAPS data
+  - Added fastq_align_dedup_bwamem subworkflow to run bwa mem (+ gpu parabricks), dedup and run stats
+  - Updated bismark modules
 - 🔄 Updated template to nf-core/tools v3.5.1 [#577](https://github.com/nf-core/methylseq/pull/577)
 
 ### Testing Updates
