@@ -3,13 +3,29 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [v4.2.0](https://github.com/nf-core/methylseq/releases/tag/4.2.0) - []
+## [v4.2.0](https://github.com/nf-core/methylseq/releases/tag/4.2.0) - [2025-12-05]
 
 ### Bug fixes & refactoring
 
+- 🐛 Fix error in `picard_bedtointervallist.config` [#566](https://github.com/nf-core/methylseq/pull/566)
+- 🔧 Update Bismark to v0.25.1 [#569](https://github.com/nf-core/methylseq/pull/569)
+- 🔧 Update MultiQC module
+
 ### Pipeline Updates
 
+- ✨ Added TAPS (TET-assisted pyridine borane sequencing) analysis workflow [#574](https://github.com/nf-core/methylseq/pull/574)
+  - Added rastair modules
+  - Removed methyldackel modules from fastq_align_dedup_bwameth subworkflow
+  - Added bam_methyldackel subworkflow which runs methyldackel modules
+  - Added fasta_index_methylseq subworkflow which indexes genomes for bismark, bwa-meth or bwa mem
+  - Added bam_taps_conversion to run rastair modules for TAPS data
+  - Added fastq_align_dedup_bwamem subworkflow to run bwa mem (+ gpu parabricks), dedup and run stats
+  - Updated bismark modules
+- 🔄 Updated template to nf-core/tools v3.5.1 [#577](https://github.com/nf-core/methylseq/pull/577)
+
 ### Testing Updates
+
+- 🧪 Updated nf-test GPU configuration
 
 ## [v4.1.0](https://github.com/nf-core/methylseq/releases/tag/4.1.0) - [2025-08-10]
 

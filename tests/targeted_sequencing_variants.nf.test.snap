@@ -248,7 +248,7 @@
                 "SRR389222_sub3.flagstat:md5,39516f7d2c77e6fef9543edf8cddbcd6",
                 "SRR389222_sub3.stats:md5,4dc3067cc6f490ec1ff28d1b00475375",
                 "Ecoli_10K_methylated.markdup.sorted_CpG.bedGraph:md5,d3bce01078b6e7749f3906bf9faad5b5",
-                "Ecoli_10K_methylated.markdup.sorted_CpG.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "Ecoli_10K_methylated.markdup.sorted_CpG.targeted.bedGraph:md5,1f3b38af3cf3c2cdf82fe38bb06ae547",
                 "SRR389222_sub1.markdup.sorted_CpG.bedGraph:md5,0944ad0e3b05791bf6dfd06be7ca4af1",
                 "SRR389222_sub1.markdup.sorted_CpG.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "SRR389222_sub2.markdup.sorted_CpG.bedGraph:md5,0a3c19af55d1625e91903ae25d1d2098",
@@ -327,7 +327,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T08:57:12.984863389"
+        "timestamp": "2025-11-28T13:46:29.932282"
     },
     "Params: bismark with run_targeted_sequencing and collecthsmetrics": {
         "content": [
@@ -629,11 +629,11 @@
                 "Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplicated.bedGraph.gz:md5,58c9ba98d0638c26a30233b006a81172",
                 "Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplicated.bedGraph.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "SRR389222_sub1_trimmed_bismark_bt2.deduplicated.bedGraph.gz:md5,d31df76c1c9128299367ebfe740357b9",
-                "SRR389222_sub1_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "SRR389222_sub1_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,7e8f4cd437da7d7bcc23b544ca177d28",
                 "SRR389222_sub2_trimmed_bismark_bt2.deduplicated.bedGraph.gz:md5,010f32001bbc7805f8e041f3ef0d9ea9",
-                "SRR389222_sub2_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "SRR389222_sub2_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,3fb06029c907e4c4fd54bc5bd9a22021",
                 "SRR389222_sub3_trimmed_bismark_bt2.deduplicated.bedGraph.gz:md5,d42e09af121ae14f6e0de5779e317b0b",
-                "SRR389222_sub3_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "SRR389222_sub3_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,e2e4cf99fde31f93f0b8cf176609b0bb",
                 "Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplicated.M-bias.txt:md5,29f3b882a51b63ce77d3d9c69b0e5f85",
                 "SRR389222_sub1_trimmed_bismark_bt2.deduplicated.M-bias.txt:md5,ed28b3cce432eecfae73bc4a071ec4ee",
                 "SRR389222_sub2_trimmed_bismark_bt2.deduplicated.M-bias.txt:md5,b06ce0084e54193ff8c9b9dd0ec9757b",
@@ -723,7 +723,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T09:02:23.345897599"
+        "timestamp": "2025-11-28T13:51:52.004183"
     },
     "Params: bismark with run_targeted_sequencing": {
         "content": [
@@ -1017,11 +1017,11 @@
                 "Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplicated.bedGraph.gz:md5,58c9ba98d0638c26a30233b006a81172",
                 "Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplicated.bedGraph.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "SRR389222_sub1_trimmed_bismark_bt2.deduplicated.bedGraph.gz:md5,d31df76c1c9128299367ebfe740357b9",
-                "SRR389222_sub1_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "SRR389222_sub1_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,7e8f4cd437da7d7bcc23b544ca177d28",
                 "SRR389222_sub2_trimmed_bismark_bt2.deduplicated.bedGraph.gz:md5,010f32001bbc7805f8e041f3ef0d9ea9",
-                "SRR389222_sub2_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "SRR389222_sub2_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,3fb06029c907e4c4fd54bc5bd9a22021",
                 "SRR389222_sub3_trimmed_bismark_bt2.deduplicated.bedGraph.gz:md5,d42e09af121ae14f6e0de5779e317b0b",
-                "SRR389222_sub3_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "SRR389222_sub3_trimmed_bismark_bt2.deduplicated.bedGraph.targeted.bedGraph:md5,e2e4cf99fde31f93f0b8cf176609b0bb",
                 "Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplicated.M-bias.txt:md5,29f3b882a51b63ce77d3d9c69b0e5f85",
                 "SRR389222_sub1_trimmed_bismark_bt2.deduplicated.M-bias.txt:md5,ed28b3cce432eecfae73bc4a071ec4ee",
                 "SRR389222_sub2_trimmed_bismark_bt2.deduplicated.M-bias.txt:md5,b06ce0084e54193ff8c9b9dd0ec9757b",
@@ -1111,7 +1111,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T08:55:33.044289996"
+        "timestamp": "2025-11-28T13:45:07.649845"
     },
     "Params: bwameth with run_targeted_sequencing and collecthsmetrics": {
         "content": [
@@ -1370,7 +1370,7 @@
                 "SRR389222_sub3.flagstat:md5,39516f7d2c77e6fef9543edf8cddbcd6",
                 "SRR389222_sub3.stats:md5,4dc3067cc6f490ec1ff28d1b00475375",
                 "Ecoli_10K_methylated.markdup.sorted_CpG.bedGraph:md5,d3bce01078b6e7749f3906bf9faad5b5",
-                "Ecoli_10K_methylated.markdup.sorted_CpG.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "Ecoli_10K_methylated.markdup.sorted_CpG.targeted.bedGraph:md5,1f3b38af3cf3c2cdf82fe38bb06ae547",
                 "SRR389222_sub1.markdup.sorted_CpG.bedGraph:md5,0944ad0e3b05791bf6dfd06be7ca4af1",
                 "SRR389222_sub1.markdup.sorted_CpG.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "SRR389222_sub2.markdup.sorted_CpG.bedGraph:md5,0a3c19af55d1625e91903ae25d1d2098",
@@ -1449,7 +1449,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T09:00:25.168824987"
+        "timestamp": "2025-11-28T13:49:22.675999"
     },
     "Params: bwameth with all_contexts and run_targeted_sequencing": {
         "content": [
@@ -1716,11 +1716,11 @@
                 "SRR389222_sub3.flagstat:md5,39516f7d2c77e6fef9543edf8cddbcd6",
                 "SRR389222_sub3.stats:md5,4dc3067cc6f490ec1ff28d1b00475375",
                 "Ecoli_10K_methylated.markdup.sorted_CHG.bedGraph:md5,9ae25ac4e62f8945e666a41bfc73f085",
-                "Ecoli_10K_methylated.markdup.sorted_CHG.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "Ecoli_10K_methylated.markdup.sorted_CHG.targeted.bedGraph:md5,1c9bd5a4d4c52f82a2a3d5e28bbde7ab",
                 "Ecoli_10K_methylated.markdup.sorted_CHH.bedGraph:md5,1048980ecaaf99cba98f66fcf65cee94",
-                "Ecoli_10K_methylated.markdup.sorted_CHH.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "Ecoli_10K_methylated.markdup.sorted_CHH.targeted.bedGraph:md5,92b767e7805c027047b5b5cd72b98d82",
                 "Ecoli_10K_methylated.markdup.sorted_CpG.bedGraph:md5,d3bce01078b6e7749f3906bf9faad5b5",
-                "Ecoli_10K_methylated.markdup.sorted_CpG.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "Ecoli_10K_methylated.markdup.sorted_CpG.targeted.bedGraph:md5,1f3b38af3cf3c2cdf82fe38bb06ae547",
                 "SRR389222_sub1.markdup.sorted_CHG.bedGraph:md5,0ce7d97fa71f60650cdcf0adc3ed9514",
                 "SRR389222_sub1.markdup.sorted_CHG.targeted.bedGraph:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "SRR389222_sub1.markdup.sorted_CHH.bedGraph:md5,16938a3095ffdd55ab1b8a283980409d",
@@ -1811,6 +1811,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T08:58:48.298385343"
+        "timestamp": "2025-11-28T13:47:53.001822"
     }
 }
