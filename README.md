@@ -1,7 +1,7 @@
 <h1>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/nf-core-methylseq_logo_dark.png">
-    <img alt="nf-core/methylseq" src="docs/images/nf-core-methylseq_logo_light.png">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/nf-core-methylseq-dark.png">
+    <img alt="nf-core/methylseq" src="docs/images/nf-core-methylseq-light.png">
   </picture>
 </h1>
 
@@ -23,7 +23,7 @@
 
 **nf-core/methylseq** is a bioinformatics analysis pipeline used for Methylation (Bisulfite) sequencing data. It pre-processes raw data from FastQ inputs, aligns the reads and performs extensive quality-control on the results.
 
-![nf-core/methylseq metro map](docs/images/taps_metromap.png)
+![nf-core/methylseq metro map](docs/images/4.2.0_metromap.png)
 
 The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool to run tasks across multiple compute infrastructures in a very portable manner. It uses Docker / Singularity / Podman / Charliecloud / Apptainer containers making installation trivial and results highly reproducible.
 

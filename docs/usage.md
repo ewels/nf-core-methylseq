@@ -10,14 +10,16 @@
 - [Requirements](#requirements)
 - [Workflow: Bismark](#workflow-bismark)
 - [Workflow: BWA-Meth](#workflow-bwa-meth)
+- [Workflow: BWA-MEM + TAPS](#workflow-bwa-mem-taps-tet-assisted-pyridine-borane-sequencing)
 - [Targeted sequencing (optional)](#targeted-sequencing-optional)
+- [Samplesheet input](#samplesheet-input)
 - [Running the pipeline](#running-the-pipeline)
 - [Updating the pipeline](#updating-the-pipeline)
 - [Reproducibility](#reproducibility)
 
 ## Introduction
 
-The nf-core/methylseq pipeline provides two distinct workflows for DNA methylation analysis. These workflows support different aligners and cater to a range of computational requirements.
+The nf-core/methylseq pipeline provides three distinct workflows for DNA methylation analysis. These workflows support different aligners and cater to a range of computational requirements.
 
 > Read more about **Bisulfite Sequencing & Three-Base Aligners** used in this pipeline [here](usage/bs-seq-primer.md)
 
@@ -32,46 +34,58 @@ flowchart TD
         A["cat fastq (optional)"] --> B["FastQC"] --> C["Trim Galore"]
     end
 
-    subgraph Stage2[Genome alignment]
-        C --> D1["bwa-meth align - GPU or CPU"]
-        C --> D2["Bismark align - Bowtie2/HISAT2"]
+    subgraph Stage2[Genome Alignment + Deduplication]
+        C --> D1["bwa-meth align - GPU or CPU<br/>+ Picard MarkDuplicates"]
+        C --> D2["Bismark align - Bowtie2/HISAT2<br/>+ Bismark deduplicate"]
+        C --> D3["BWA-MEM align (TAPS)<br/>+ Picard MarkDuplicates"]
     end
 
-    subgraph Stage3[Post-processing]
-        D1 --> E1["Samtools sort"]
-        E1 --> E2["Samtools index/stats"]
-        E2 --> E3["Picard MarkDuplicates"]
-        E3 --> E4["MethylDackel extract/M-bias"]
+    subgraph Stage3[Methylation Calling]
+        D1 --> E1["MethylDackel extract/M-bias<br/>(Bisulfite data)"]
+        D1 --> E2["Rastair TAPS conversion<br/>(TAPS data)"]
 
-        D2 --> F1["Bismark deduplicate"]
-        F1 --> F2["Bismark methylation extractor"]
-        F2 --> F3["Bismark coverage2cytosine"]
-        F3 --> F4["Bismark report"]
-        F4 --> F5["Bismark Summary"]
-        F4 --> G1["Samtools sort/index"]
+        D2 --> F1["Bismark methylation extractor"]
+        F1 --> F2["Bismark coverage2cytosine"]
+        F2 --> F3["Bismark report"]
+        F3 --> F4["Bismark Summary"]
+
+        D3 --> E3["MethylDackel extract/M-bias<br/>(Bisulfite data)"]
+        D3 --> E4["Rastair TAPS conversion<br/>(TAPS data)"]
     end
 
     subgraph Stage3b[Targeted Sequencing - Optional]
-        E4 --> I1["Targeted Sequencing<br/>(bedGraph filtering)"]
-        F3 --> I1
+        E1 --> I1["Targeted Sequencing<br/>(bedGraph filtering)"]
+        E2 --> I1
+        E3 --> I1
+        E4 --> I1
+        F2 --> I1
         I1 --> I2["Picard CollectHsMetrics<br/>(optional)"]
     end
 
     subgraph Stage3c[Optional QC]
-        E3 --> J1["preseq (optional)"]
-        G1 --> J1
-        E3 --> J2["Qualimap (optional)"]
-        G1 --> J2
+        D1 --> J1["preseq (optional)"]
+        D2 --> J1
+        D3 --> J1
+        D1 --> J2["Qualimap (optional)"]
+        D2 --> J2
+        D3 --> J2
     end
 
     subgraph Stage4[Final QC]
-        E4 --> H1["MultiQC"]
-        G1 --> H1
+        E1 --> H1["MultiQC"]
+        E2 --> H1
+        E3 --> H1
+        E4 --> H1
+        F4 --> H1
         I1 --> H1
         I2 --> H1
         J1 --> H1
         J2 --> H1
     end
+
+    %% Styling for TAPS workflows
+    classDef tapsStyle fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    class D3,E2,E4 tapsStyle
 ```
 
 ### Workflow: Bismark
@@ -90,7 +104,7 @@ bwa-meth aligner options:
 
 - Standard `bwa-meth` (CPU-based): This option can be invoked via `--aligner bwameth` and uses the traditional BWA-Meth aligner and runs on CPU processors. By default, this uses the standard BWA-MEM algorithm.
 
-- BWA-MEM2 algorithm: For improved performance, you can enable the BWA-MEM2 algorithm by adding `--use_mem2` to your command. BWA-MEM2 is a drop-in replacement for BWA-MEM that is generally faster and more accurate. When enabled, it affects the BWA-Meth CPU workflow (indexing and alignment). The GPU pathway (Parabricks) uses its own implementation and does not use BWA-MEM2.
+- BWA-MEM2 algorithm: For improved performance, you can enable the BWA-MEM2 algorithm by adding `--use_mem2` to your command. BWA-MEM2 is a drop-in replacement for BWA-MEM that is generally faster and more accurate. This applies to both CPU and GPU modes.
 
 Examples:
 
@@ -102,22 +116,34 @@ nextflow run nf-core/methylseq --aligner bwameth --use_mem2 --input samplesheet.
 nextflow run nf-core/methylseq --aligner bwameth --use_mem2 --profile gpu --input samplesheet.csv --genome GRCh38
 ```
 
-- `Parabricks/FQ2BAMMETH` (GPU-based): For higher performance, the pipeline can leverage the [Parabricks implementation of bwa-meth (fq2bammeth)](https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_fq2bam_meth.html), which implements the baseline tool `bwa-meth`. To use this option, include the `gpu` profile (as in `--profile gpu`) along with `--aligner bwameth`.
+- `Parabricks/FQ2BAMMETH` (GPU-based): For higher performance, the pipeline can leverage the [Parabricks implementation of bwa-meth (fq2bammeth)](https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_fq2bam_meth.html), which implements the baseline tool `bwa-meth` in a performant method using fq2bam (BWA-MEM + GATK) as a backend for processing on GPU. To use this option, include the `gpu` profile (as in `--profile gpu`) along with `--aligner bwameth`.
 
-### Workflow: BWA-Mem
+### Workflow: BWA-MEM + TAPS (TET-Assisted Pyridine borane Sequencing)
 
-The third workflow uses [BWA-Mem](https://github.com/lh3/bwa) as the alignment tool and [rastair](https://bitbucket.org/bsblabludwig/rastair/src/master/) for post-processing.
+The pipeline supports **TAPS data analysis**, which uses a different approach to detect DNA methylation compared to traditional bisulfite sequencing. TAPS preserves the original DNA sequence while converting methylated cytosines to thymine, making it compatible with standard aligners.
 
-bwa-mem aligner options:
+#### TAPS vs Bisulfite Sequencing
 
-- Standard `bwa-mem` (CPU-based): This option can be invoked via `--aligner bwamem` and uses the traditional BWA-Mem aligner and runs on CPU processors.
-
-- `Parabricks/FQ2BAM` (GPU-based): For higher performance, the pipeline can leverage the [Parabricks implementation of bwa-mem (fq2bam)](https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_fq2bam.html), which implements the baseline tool `bwa-mem`. To use this option, include the `gpu` profile (as in `--profile gpu`) along with `--aligner bwamem`.
+| Feature                   | Bisulfite Sequencing              | TAPS                              |
+| ------------------------- | --------------------------------- | --------------------------------- |
+| **DNA Conversion**        | C→T (unmethylated cytosines)      | 5mC→T (methylated cytosines)      |
+| **DNA Degradation**       | High (harsh chemical treatment)   | Minimal (enzymatic treatment)     |
+| **Sequence Complexity**   | Reduced (C→T conversion)          | Preserved (original sequence)     |
+| **Aligner Compatibility** | Requires bisulfite-aware aligners | Compatible with standard aligners |
 
 > [!NOTE]
-> The Parabricks module does not support Conda/Mamba. Use Docker, Singularity, or Podman.
->
-> By default, the Parabricks step requests 100 GB of memory (configurable via process selectors).
+> We recommend using bwa-mem for TAPS protocol as it is optimized for this type of data.
+
+#### Automatic Parameter Configuration
+
+When `--taps` is specified, the pipeline automatically:
+
+- Uses Rastair for methylation calling (TAPS conversion analysis)
+- Validates aligner compatibility (prevents using Bismark with TAPS data)
+- Configures appropriate deduplication (Picard MarkDuplicates for TAPS)
+
+> [!NOTE]
+> When using `--aligner bwamem`, Rastair is automatically used for methylation calling even without the `--taps` flag, as bwamem is optimized for TAPS data.
 
 ### Targeted sequencing (optional)
 

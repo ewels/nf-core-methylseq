@@ -110,7 +110,7 @@ bwamem/
 │   |   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_call.tsv
 │   ├── mbias
 │   |   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias.tsv
-│   ├── mbias_parser
+│   ├── mbiasparser
 │   │   ├── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.txt
 │   │   ├── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.csv
 │   │   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.pdf
@@ -297,11 +297,11 @@ Filename abbreviations stand for the following reference alignment strands:
   - Individual methylation calls file sorted by genomic coordinates and including cytosine context.
 - `mbias/sample.markdup.sorted_CpG.rastair_mbias.tsv`
   - Average conversion rate per position on the read per read pair (R1 and R2) original strand (OT, OB).
-- `mbias_parser/sample.markdup.sorted_CpG.rastair_mbias_processed.txt`
+- `mbiasparser/sample.markdup.sorted_CpG.rastair_mbias_processed.txt`
   - File reporting the dynamic trimming to be passed to the rastair/call process
-- `mbias_parser/sample.markdup.sorted_CpG.rastair_mbias_processed.csv`
+- `mbiasparser/sample.markdup.sorted_CpG.rastair_mbias_processed.csv`
   - File reporting the dynamic trimming to be passed to the rastair/call process
-- `mbias_parser/sample.markdup.sorted_CpG.rastair_mbias_processed.pdf`
+- `mbiasparser/sample.markdup.sorted_CpG.rastair_mbias_processed.pdf`
   - PDF file with the plot reporting the mbias and dynamic trimming selected for the sample
 - `methylkit/sample.markdup.sorted_CpG.rastair_methylkit.txt.gz`
   - Individual methylation calls in a format digestible by MethytlKit R package.
