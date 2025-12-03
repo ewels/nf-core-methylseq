@@ -14,13 +14,6 @@
                         "single_end": true
                     },
                     "test.flagstat:md5,2191911d72575a2358b08b1df64ccb53"
-                ],
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.sorted.bam:md5,5e97ff834f5cd207162079ce925748a1"
                 ]
             ],
             [
@@ -29,14 +22,7 @@
                         "id": "test",
                         "single_end": true
                     },
-                    "test.sorted.bam:md5,5e97ff834f5cd207162079ce925748a1"
-                ],
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.stats:md5,4e6327473c28fe17f886e6f6023b0de9"
+                    "test.stats:md5,0883b19c92a783883b3e11d5bfcc5d6a"
                 ]
             ],
             [
@@ -46,13 +32,6 @@
                         "single_end": true
                     },
                     "test.idxstats:md5,613e048487662c694aa4a2f73ca96a20"
-                ],
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.sorted.bam:md5,5e97ff834f5cd207162079ce925748a1"
                 ]
             ],
             [
@@ -60,11 +39,8 @@
             ],
             [
                 "test.deduped.sorted.MarkDuplicates.metrics.txt",
-                "test.sorted.bam",
                 "test.flagstat",
-                "test.sorted.bam",
                 "test.idxstats",
-                "test.sorted.bam",
                 "test.stats"
             ],
             [
@@ -75,10 +51,10 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-30T16:07:31.456069727"
+        "timestamp": "2025-12-03T12:27:38.204299"
     },
     "Params: bwamem paired-end - skip_deduplication": {
         "content": [
@@ -86,66 +62,41 @@
                 "94fcf617f5b994584c4e8d4044e16b4f"
             ],
             [
-                "test.sorted.bam",
                 "test.sorted.bam.bai"
             ],
             [
                 [
                     {
                         "id": "test",
-                        "single_end": true
+                        "single_end": false
                     },
                     "test.flagstat:md5,2191911d72575a2358b08b1df64ccb53"
-                ],
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.sorted.bam:md5,5e97ff834f5cd207162079ce925748a1"
                 ]
             ],
             [
                 [
                     {
                         "id": "test",
-                        "single_end": true
+                        "single_end": false
                     },
-                    "test.sorted.bam:md5,5e97ff834f5cd207162079ce925748a1"
-                ],
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.stats:md5,4e6327473c28fe17f886e6f6023b0de9"
+                    "test.stats:md5,0883b19c92a783883b3e11d5bfcc5d6a"
                 ]
             ],
             [
                 [
                     {
                         "id": "test",
-                        "single_end": true
+                        "single_end": false
                     },
                     "test.idxstats:md5,613e048487662c694aa4a2f73ca96a20"
-                ],
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.sorted.bam:md5,5e97ff834f5cd207162079ce925748a1"
                 ]
             ],
             [
                 
             ],
             [
-                "test.sorted.bam",
                 "test.flagstat",
-                "test.sorted.bam",
                 "test.idxstats",
-                "test.sorted.bam",
                 "test.stats"
             ],
             [
@@ -153,10 +104,10 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-30T16:08:02.800594333"
+        "timestamp": "2025-12-03T12:28:09.085652"
     },
     "Params: bwamem single-end - default - stub": {
         "content": [
@@ -186,23 +137,9 @@
                             "single_end": true
                         },
                         "test.flagstat:md5,67394650dbae96d1a4fcc70484822159"
-                    ],
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "3": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
                     [
                         {
                             "id": "test",
@@ -218,13 +155,6 @@
                             "single_end": true
                         },
                         "test.idxstats:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "5": [
@@ -241,15 +171,12 @@
                         "test.deduped.sorted.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e",
                         "test.flagstat:md5,67394650dbae96d1a4fcc70484822159"
                     ],
                     [
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e",
                         "test.idxstats:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e",
                         "test.stats:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
@@ -282,15 +209,12 @@
                         "test.deduped.sorted.MarkDuplicates.metrics.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e",
                         "test.flagstat:md5,67394650dbae96d1a4fcc70484822159"
                     ],
                     [
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e",
                         "test.idxstats:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ],
                     [
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e",
                         "test.stats:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
@@ -310,39 +234,18 @@
                             "single_end": true
                         },
                         "test.flagstat:md5,67394650dbae96d1a4fcc70484822159"
-                    ],
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
-                "samtools_index_stats": [
+                "samtools_idxstats": [
                     [
                         {
                             "id": "test",
                             "single_end": true
                         },
                         "test.idxstats:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "samtools_stats": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.sorted.bam:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ],
                     [
                         {
                             "id": "test",
@@ -383,10 +286,10 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-30T16:08:18.950324064"
+        "timestamp": "2025-12-03T12:28:25.358403"
     },
     "Params: bwamem paired-end - default": {
         "content": [
@@ -400,48 +303,27 @@
                 [
                     {
                         "id": "test",
-                        "single_end": true
+                        "single_end": false
                     },
                     "test.flagstat:md5,2191911d72575a2358b08b1df64ccb53"
-                ],
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.sorted.bam:md5,5e97ff834f5cd207162079ce925748a1"
                 ]
             ],
             [
                 [
                     {
                         "id": "test",
-                        "single_end": true
+                        "single_end": false
                     },
-                    "test.sorted.bam:md5,5e97ff834f5cd207162079ce925748a1"
-                ],
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.stats:md5,4e6327473c28fe17f886e6f6023b0de9"
+                    "test.stats:md5,0883b19c92a783883b3e11d5bfcc5d6a"
                 ]
             ],
             [
                 [
                     {
                         "id": "test",
-                        "single_end": true
+                        "single_end": false
                     },
                     "test.idxstats:md5,613e048487662c694aa4a2f73ca96a20"
-                ],
-                [
-                    {
-                        "id": "test",
-                        "single_end": true
-                    },
-                    "test.sorted.bam:md5,5e97ff834f5cd207162079ce925748a1"
                 ]
             ],
             [
@@ -449,11 +331,8 @@
             ],
             [
                 "test.deduped.sorted.MarkDuplicates.metrics.txt",
-                "test.sorted.bam",
                 "test.flagstat",
-                "test.sorted.bam",
                 "test.idxstats",
-                "test.sorted.bam",
                 "test.stats"
             ],
             [
@@ -464,9 +343,9 @@
             ]
         ],
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
         },
-        "timestamp": "2025-10-30T16:07:51.260879823"
+        "timestamp": "2025-12-03T12:27:56.314782"
     }
 }
