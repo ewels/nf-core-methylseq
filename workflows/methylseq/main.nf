@@ -4,26 +4,26 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { paramsSummaryMap          } from 'plugin/nf-schema'
-include { FASTQC                    } from '../../modules/nf-core/fastqc/main'
-include { TRIMGALORE                } from '../../modules/nf-core/trimgalore/main'
-include { QUALIMAP_BAMQC            } from '../../modules/nf-core/qualimap/bamqc/main'
-include { PRESEQ_LCEXTRAP           } from '../../modules/nf-core/preseq/lcextrap/main'
-include { MULTIQC                   } from '../../modules/nf-core/multiqc/main'
-include { CAT_FASTQ                 } from '../../modules/nf-core/cat/fastq/main'
-include { FASTQ_ALIGN_DEDUP_BISMARK } from '../../subworkflows/nf-core/fastq_align_dedup_bismark/main'
-include { FASTQ_ALIGN_DEDUP_BWAMETH } from '../../subworkflows/nf-core/fastq_align_dedup_bwameth/main'
-include { FASTQ_ALIGN_DEDUP_BWAMEM  } from '../../subworkflows/nf-core/fastq_align_dedup_bwamem/main'
-include { PICARD_MARKDUPLICATES     } from '../../modules/nf-core/picard/markduplicates/main'
+include { paramsSummaryMap              } from 'plugin/nf-schema'
+include { FASTQC                        } from '../../modules/nf-core/fastqc/main'
+include { TRIMGALORE                    } from '../../modules/nf-core/trimgalore/main'
+include { QUALIMAP_BAMQC                } from '../../modules/nf-core/qualimap/bamqc/main'
+include { PRESEQ_LCEXTRAP               } from '../../modules/nf-core/preseq/lcextrap/main'
+include { MULTIQC                       } from '../../modules/nf-core/multiqc/main'
+include { CAT_FASTQ                     } from '../../modules/nf-core/cat/fastq/main'
+include { FASTQ_ALIGN_DEDUP_BISMARK     } from '../../subworkflows/nf-core/fastq_align_dedup_bismark/main'
+include { FASTQ_ALIGN_DEDUP_BWAMETH     } from '../../subworkflows/nf-core/fastq_align_dedup_bwameth/main'
+include { FASTQ_ALIGN_DEDUP_BWAMEM      } from '../../subworkflows/nf-core/fastq_align_dedup_bwamem/main'
+include { PICARD_MARKDUPLICATES         } from '../../modules/nf-core/picard/markduplicates/main'
 include { PICARD_ADDORREPLACEREADGROUPS } from '../../modules/nf-core/picard/addorreplacereadgroups/main'
-include { SAMTOOLS_INDEX            } from '../../modules/nf-core/samtools/index/main'
-include { paramsSummaryMultiqc      } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
-include { softwareVersionsToYAML    } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
-include { methodsDescriptionText    } from '../../subworkflows/local/utils_nfcore_methylseq_pipeline'
-include { validateInputSamplesheet  } from '../../subworkflows/local/utils_nfcore_methylseq_pipeline'
-include { BAM_TAPS_CONVERSION       } from '../../subworkflows/nf-core/bam_taps_conversion'
-include { BAM_METHYLDACKEL          } from '../../subworkflows/nf-core/bam_methyldackel/main'
-include { TARGETED_SEQUENCING       } from '../../subworkflows/local/targeted_sequencing'
+include { SAMTOOLS_INDEX                } from '../../modules/nf-core/samtools/index/main'
+include { paramsSummaryMultiqc          } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
+include { softwareVersionsToYAML        } from '../../subworkflows/nf-core/utils_nfcore_pipeline'
+include { methodsDescriptionText        } from '../../subworkflows/local/utils_nfcore_methylseq_pipeline'
+include { validateInputSamplesheet      } from '../../subworkflows/local/utils_nfcore_methylseq_pipeline'
+include { BAM_TAPS_CONVERSION           } from '../../subworkflows/nf-core/bam_taps_conversion'
+include { BAM_METHYLDACKEL              } from '../../subworkflows/nf-core/bam_methyldackel/main'
+include { TARGETED_SEQUENCING           } from '../../subworkflows/local/targeted_sequencing'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,6 +52,10 @@ workflow METHYLSEQ {
     ch_gzi           = channel.empty()
     ch_bedgraph      = channel.empty()
     ch_aligner_mqc   = channel.empty()
+    ch_rastair_mbias = channel.empty()
+    ch_rastair_call  = channel.empty()
+    ch_methylkit     = channel.empty()
+    ch_mbias         = channel.empty()
     ch_qualimap      = channel.empty()
     ch_preseq        = channel.empty()
     ch_multiqc_files = channel.empty()
@@ -108,9 +112,8 @@ workflow METHYLSEQ {
     // SUBWORKFLOW: Align reads, deduplicate and extract methylation with Bismark
     //
 
-    if (params.taps & params.aligner != 'bwamem') {
+    if (params.taps && params.aligner != 'bwamem') {
         log.info "TAPS protocol detected and aligner is not 'bwamem'. We recommend using bwa-mem for TAPS protocol as it is optimized for this type of data."
-        // params.aligner = 'bwamem'
     }
 
     // Aligner: bismark or bismark_hisat
@@ -187,10 +190,7 @@ workflow METHYLSEQ {
             ch_bwamem_inputs.fasta,
             ch_bwamem_inputs.fasta_index,
             ch_bwamem_inputs.bwamem_index,
-            params.skip_deduplication,
-            workflow.profile.tokenize(',').intersect(['gpu']).size() >= 1,
-            // [[],[]], // interval file
-            // [[],[]] // known sites file
+            params.skip_deduplication
         )
 
         ch_bam         = FASTQ_ALIGN_DEDUP_BWAMEM.out.bam
@@ -233,7 +233,7 @@ workflow METHYLSEQ {
     //
     // Subworkflow: Count negative C->T conversion rates as a readout for DNA methylation
     //
-    else if (!params.taps && (params.aligner == 'bwameth' || (params.aligner == 'bwamem'))) {
+    else if (!params.taps && params.aligner == 'bwameth') {
 
         ch_bam_bai = ch_bam.join(ch_bai)
         ch_methyldackel_inputs = ch_bam_bai
@@ -400,6 +400,11 @@ workflow METHYLSEQ {
     emit:
     bam            = ch_bam                      // channel: [ val(meta), path(bam) ]
     bai            = ch_bai                      // channel: [ val(meta), path(bai) ]
+    rastair_mbias  = ch_rastair_mbias            // channel: [ val(meta), path(rastair_mbias) ]
+    rastair_call   = ch_rastair_call             // channel: [ val(meta), path(rastair_call) ]
+    methylkit      = ch_methylkit                 // channel: [ val(meta), path(methylkit) ]
+    mbias          = ch_mbias                     // channel: [ val(meta), path(mbias) ]
+    bedgraph       = ch_bedgraph                  // channel: [ val(meta), path(bedgraph) ]
     qualimap       = ch_qualimap                 // channel: [ val(meta), path(qualimap) ]
     preseq         = ch_preseq                   // channel: [ val(meta), path(preseq) ]
     multiqc_report = ch_multiqc_report            // channel: [ path(multiqc_report.html )  ]
