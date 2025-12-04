@@ -2,9 +2,6 @@
     "Params: default with bowtie2-index": {
         "content": [
             {
-                "BISMARK_ALIGN": {
-                    "bismark": "0.25.1"
-                },
                 "BISMARK_DEDUPLICATE": {
                     "bismark": "0.25.1"
                 },
@@ -17,16 +14,10 @@
                 "BISMARK_SUMMARY": {
                     "bismark": "0.25.1"
                 },
-                "FASTQC": {
-                    "fastqc": "0.12.1"
-                },
                 "GUNZIP": {
                     "gunzip": 1.13
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": "1.22.1"
-                },
-                "SAMTOOLS_SORT": {
                     "samtools": "1.22.1"
                 },
                 "TRIMGALORE": {
@@ -34,11 +25,23 @@
                     "cutadapt": 4.9,
                     "pigz": 2.8
                 },
-                "UNTAR": {
+                "UNTAR_BISMARK": {
                     "untar": 1.34
                 },
                 "Workflow": {
                     "nf-core/methylseq": "v4.2.0dev"
+                },
+                "BISMARK_ALIGN": {
+                    "bismark": "0.25.1"
+                },
+                "FASTQC": {
+                    "fastqc": "0.12.1"
+                },
+                "MULTIQC": {
+                    "multiqc": 1.32
+                },
+                "SAMTOOLS_SORT": {
+                    "samtools": "1.22.1"
                 }
             }
         ],
@@ -46,14 +49,11 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T05:40:58.820369822"
+        "timestamp": "2025-12-04T11:02:11.64102"
     },
     "Params: bismark_hisat with hisat2-index": {
         "content": [
             {
-                "BISMARK_ALIGN": {
-                    "bismark": "0.25.1"
-                },
                 "BISMARK_DEDUPLICATE": {
                     "bismark": "0.25.1"
                 },
@@ -69,16 +69,10 @@
                 "BISMARK_SUMMARY": {
                     "bismark": "0.25.1"
                 },
-                "FASTQC": {
-                    "fastqc": "0.12.1"
-                },
                 "GUNZIP": {
                     "gunzip": 1.13
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": "1.22.1"
-                },
-                "SAMTOOLS_SORT": {
                     "samtools": "1.22.1"
                 },
                 "TRIMGALORE": {
@@ -88,6 +82,18 @@
                 },
                 "Workflow": {
                     "nf-core/methylseq": "v4.2.0dev"
+                },
+                "BISMARK_ALIGN": {
+                    "bismark": "0.25.1"
+                },
+                "FASTQC": {
+                    "fastqc": "0.12.1"
+                },
+                "MULTIQC": {
+                    "multiqc": 1.32
+                },
+                "SAMTOOLS_SORT": {
+                    "samtools": "1.22.1"
                 }
             }
         ],
@@ -95,14 +101,11 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T05:46:24.84862466"
+        "timestamp": "2025-12-04T11:08:29.489122"
     },
     "Params: bismark with run_preseq with bowtie2-index": {
         "content": [
             {
-                "BISMARK_ALIGN": {
-                    "bismark": "0.25.1"
-                },
                 "BISMARK_DEDUPLICATE": {
                     "bismark": "0.25.1"
                 },
@@ -115,16 +118,10 @@
                 "BISMARK_SUMMARY": {
                     "bismark": "0.25.1"
                 },
-                "FASTQC": {
-                    "fastqc": "0.12.1"
-                },
                 "GUNZIP": {
                     "gunzip": 1.13
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": "1.22.1"
-                },
-                "SAMTOOLS_SORT": {
                     "samtools": "1.22.1"
                 },
                 "TRIMGALORE": {
@@ -132,11 +129,23 @@
                     "cutadapt": 4.9,
                     "pigz": 2.8
                 },
-                "UNTAR": {
+                "UNTAR_BISMARK": {
                     "untar": 1.34
                 },
                 "Workflow": {
                     "nf-core/methylseq": "v4.2.0dev"
+                },
+                "BISMARK_ALIGN": {
+                    "bismark": "0.25.1"
+                },
+                "FASTQC": {
+                    "fastqc": "0.12.1"
+                },
+                "MULTIQC": {
+                    "multiqc": 1.32
+                },
+                "SAMTOOLS_SORT": {
+                    "samtools": "1.22.1"
                 }
             }
         ],
@@ -144,16 +153,13 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T05:42:55.658790031"
+        "timestamp": "2025-12-04T11:04:35.596818"
     },
     "Params: bwameth with bwameth-index": {
         "content": [
             {
                 "BWAMETH_ALIGN": {
                     "bwameth": "0.2.9"
-                },
-                "FASTQC": {
-                    "fastqc": "0.12.1"
                 },
                 "GUNZIP": {
                     "gunzip": 1.13
@@ -176,22 +182,28 @@
                 "SAMTOOLS_INDEX_DEDUPLICATED": {
                     "samtools": "1.22.1"
                 },
-                "SAMTOOLS_SORT": {
-                    "samtools": "1.22.1"
-                },
-                "SAMTOOLS_STATS": {
-                    "samtools": "1.22.1"
-                },
                 "TRIMGALORE": {
                     "trimgalore": "0.6.10",
                     "cutadapt": 4.9,
                     "pigz": 2.8
                 },
-                "UNTAR": {
+                "UNTAR_BWAMETH": {
                     "untar": 1.34
                 },
                 "Workflow": {
                     "nf-core/methylseq": "v4.2.0dev"
+                },
+                "FASTQC": {
+                    "fastqc": "0.12.1"
+                },
+                "MULTIQC": {
+                    "multiqc": 1.32
+                },
+                "SAMTOOLS_SORT": {
+                    "samtools": "1.22.1"
+                },
+                "SAMTOOLS_STATS": {
+                    "samtools": "1.22.1"
                 }
             }
         ],
@@ -199,6 +211,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T05:44:29.266621491"
+        "timestamp": "2025-12-04T11:06:00.333714"
     }
 }
