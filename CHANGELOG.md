@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bug fixes & refactoring
 
 - 🐛 Fix error in `picard_bedtointervallist.config` [#566](https://github.com/nf-core/methylseq/pull/566)
+- 🐛 Fix error when using --aligner bwameth with samtools sort, the output bams will be labeled with prefix "${meta.id}.deduplicated.sorted" and published in the deduplication folder [#580](https://github.com/nf-core/methylseq/pull/581)
 - 🔧 Update Bismark to v0.25.1 [#569](https://github.com/nf-core/methylseq/pull/569)
 - 🔧 Update MultiQC module
 
