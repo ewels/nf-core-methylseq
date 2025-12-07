@@ -167,6 +167,14 @@ workflow PIPELINE_COMPLETION {
         if (hook_url) {
             imNotification(summary_params, hook_url)
         }
+
+        // Merge topic channel versions into the main versions file
+        // This is a workaround until all modules use topic channels
+        def mqcVersionsFile = file("${outdir}/pipeline_info/nf_core_methylseq_software_mqc_versions.yml")
+        def topicVersionsFile = file("${outdir}/pipeline_info/nf_core_methylseq_topic_versions.yml")
+        if (topicVersionsFile.exists() && mqcVersionsFile.exists()) {
+            mqcVersionsFile.append(topicVersionsFile.text)
+        }
     }
 
     workflow.onError {

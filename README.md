@@ -1,7 +1,7 @@
 <h1>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/nf-core-methylseq-dark.png">
-    <img alt="nf-core/methylseq" src="docs/images/nf-core-methylseq-light.png">
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/nf-core-methylseq_logo_dark.png">
+    <img alt="nf-core/methylseq" src="docs/images/nf-core-methylseq_logo_light.png">
   </picture>
 </h1>
 

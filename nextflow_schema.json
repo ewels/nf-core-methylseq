@@ -120,7 +120,7 @@
                 },
                 "bwamem_index": {
                     "type": "string",
-                    "format": "file-path",
+                    "format": "directory-path",
                     "description": "Path to the BWA-MEM index filename base",
                     "help_text": "Directory for a bwa-mem genome reference index. Only used when using the bwa-mem aligner.\n\nNote that this is not a complete path, but the directory containing the reference. For example, if you have file paths such as `/path/to/ref/genome.fa.bwamem.c2t.bwt`, you should specify `/path/to/ref/`.",
                     "fa_icon": "far fa-dot-circle"

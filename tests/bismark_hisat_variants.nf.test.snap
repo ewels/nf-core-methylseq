@@ -2,9 +2,6 @@
     "Params: bismark_hisat with rrbs": {
         "content": [
             {
-                "BISMARK_ALIGN": {
-                    "bismark": "0.25.1"
-                },
                 "BISMARK_GENOMEPREPARATION_HISAT": {
                     "bismark": "0.25.1"
                 },
@@ -17,16 +14,10 @@
                 "BISMARK_SUMMARY": {
                     "bismark": "0.25.1"
                 },
-                "FASTQC": {
-                    "fastqc": "0.12.1"
-                },
                 "GUNZIP": {
                     "gunzip": 1.13
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": "1.22.1"
-                },
-                "SAMTOOLS_SORT": {
                     "samtools": "1.22.1"
                 },
                 "TRIMGALORE": {
@@ -36,6 +27,18 @@
                 },
                 "Workflow": {
                     "nf-core/methylseq": "v4.2.0dev"
+                },
+                "BISMARK_ALIGN": {
+                    "bismark": "0.25.1"
+                },
+                "FASTQC": {
+                    "fastqc": "0.12.1"
+                },
+                "MULTIQC": {
+                    "multiqc": 1.32
+                },
+                "SAMTOOLS_SORT": {
+                    "samtools": "1.22.1"
                 }
             },
             [
@@ -51,14 +54,10 @@
                 "bismark_hisat/alignments/logs/SRR389222_sub2_trimmed_bismark_hisat2_SE_report.txt",
                 "bismark_hisat/alignments/logs/SRR389222_sub3_trimmed_bismark_hisat2_SE_report.txt",
                 "bismark_hisat/deduplicated",
-                "bismark_hisat/deduplicated/Ecoli_10K_methylated.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/Ecoli_10K_methylated.deduplicated.sorted.bam.bai",
-                "bismark_hisat/deduplicated/SRR389222_sub1.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/SRR389222_sub1.deduplicated.sorted.bam.bai",
-                "bismark_hisat/deduplicated/SRR389222_sub2.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/SRR389222_sub2.deduplicated.sorted.bam.bai",
-                "bismark_hisat/deduplicated/SRR389222_sub3.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/SRR389222_sub3.deduplicated.sorted.bam.bai",
+                "bismark_hisat/deduplicated/Ecoli_10K_methylated.sorted.bam.bai",
+                "bismark_hisat/deduplicated/SRR389222_sub1.sorted.bam.bai",
+                "bismark_hisat/deduplicated/SRR389222_sub2.sorted.bam.bai",
+                "bismark_hisat/deduplicated/SRR389222_sub3.sorted.bam.bai",
                 "bismark_hisat/methylation_calls",
                 "bismark_hisat/methylation_calls/bedGraph",
                 "bismark_hisat/methylation_calls/bedGraph/Ecoli_10K_methylated_1_val_1_bismark_hisat2_pe.bedGraph.gz",
@@ -248,6 +247,7 @@
                 "multiqc/bismark_hisat/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/nf_core_methylseq_software_mqc_versions.yml",
+                "pipeline_info/nf_core_methylseq_topic_versions.yml",
                 "trimgalore",
                 "trimgalore/fastqc",
                 "trimgalore/fastqc/Ecoli_10K_methylated_1_val_1_fastqc.html",
@@ -353,22 +353,6 @@
                 [
                     "SRR389222_sub3_trimmed_bismark_hisat2.bam",
                     "9972d2444374fd93f4877867b786f1d2"
-                ],
-                [
-                    "Ecoli_10K_methylated.deduplicated.sorted.bam",
-                    "7f73f1e4398f697100a09d3742b662cb"
-                ],
-                [
-                    "SRR389222_sub1.deduplicated.sorted.bam",
-                    "926438a4e8a8fe56db5f99bd3b28ef0d"
-                ],
-                [
-                    "SRR389222_sub2.deduplicated.sorted.bam",
-                    "fdc1c2b1beb071e9b3dccb991f216ee0"
-                ],
-                [
-                    "SRR389222_sub3.deduplicated.sorted.bam",
-                    "99246979468cb998c02b26b5c8ac4ee4"
                 ]
             ]
         ],
@@ -376,14 +360,11 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T07:53:03.399744662"
+        "timestamp": "2025-12-04T10:32:32.15283"
     },
     "Params: bismark_hisat with save_reference and save_align_intermeds": {
         "content": [
             {
-                "BISMARK_ALIGN": {
-                    "bismark": "0.25.1"
-                },
                 "BISMARK_DEDUPLICATE": {
                     "bismark": "0.25.1"
                 },
@@ -399,16 +380,10 @@
                 "BISMARK_SUMMARY": {
                     "bismark": "0.25.1"
                 },
-                "FASTQC": {
-                    "fastqc": "0.12.1"
-                },
                 "GUNZIP": {
                     "gunzip": 1.13
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": "1.22.1"
-                },
-                "SAMTOOLS_SORT": {
                     "samtools": "1.22.1"
                 },
                 "TRIMGALORE": {
@@ -418,18 +393,30 @@
                 },
                 "Workflow": {
                     "nf-core/methylseq": "v4.2.0dev"
+                },
+                "BISMARK_ALIGN": {
+                    "bismark": "0.25.1"
+                },
+                "FASTQC": {
+                    "fastqc": "0.12.1"
+                },
+                "MULTIQC": {
+                    "multiqc": 1.32
+                },
+                "SAMTOOLS_SORT": {
+                    "samtools": "1.22.1"
                 }
             },
             [
                 "bismark_hisat",
                 "bismark_hisat/alignments",
-                "bismark_hisat/alignments/Ecoli_10K_methylated.deduplicated.sorted.bam",
+                "bismark_hisat/alignments/Ecoli_10K_methylated.sorted.bam",
                 "bismark_hisat/alignments/Ecoli_10K_methylated_1_val_1_bismark_hisat2_pe.bam",
-                "bismark_hisat/alignments/SRR389222_sub1.deduplicated.sorted.bam",
+                "bismark_hisat/alignments/SRR389222_sub1.sorted.bam",
                 "bismark_hisat/alignments/SRR389222_sub1_trimmed_bismark_hisat2.bam",
-                "bismark_hisat/alignments/SRR389222_sub2.deduplicated.sorted.bam",
+                "bismark_hisat/alignments/SRR389222_sub2.sorted.bam",
                 "bismark_hisat/alignments/SRR389222_sub2_trimmed_bismark_hisat2.bam",
-                "bismark_hisat/alignments/SRR389222_sub3.deduplicated.sorted.bam",
+                "bismark_hisat/alignments/SRR389222_sub3.sorted.bam",
                 "bismark_hisat/alignments/SRR389222_sub3_trimmed_bismark_hisat2.bam",
                 "bismark_hisat/alignments/logs",
                 "bismark_hisat/alignments/logs/Ecoli_10K_methylated_1_val_1_bismark_hisat2_PE_report.txt",
@@ -437,14 +424,10 @@
                 "bismark_hisat/alignments/logs/SRR389222_sub2_trimmed_bismark_hisat2_SE_report.txt",
                 "bismark_hisat/alignments/logs/SRR389222_sub3_trimmed_bismark_hisat2_SE_report.txt",
                 "bismark_hisat/deduplicated",
-                "bismark_hisat/deduplicated/Ecoli_10K_methylated.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/Ecoli_10K_methylated.deduplicated.sorted.bam.bai",
-                "bismark_hisat/deduplicated/SRR389222_sub1.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/SRR389222_sub1.deduplicated.sorted.bam.bai",
-                "bismark_hisat/deduplicated/SRR389222_sub2.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/SRR389222_sub2.deduplicated.sorted.bam.bai",
-                "bismark_hisat/deduplicated/SRR389222_sub3.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/SRR389222_sub3.deduplicated.sorted.bam.bai",
+                "bismark_hisat/deduplicated/Ecoli_10K_methylated.sorted.bam.bai",
+                "bismark_hisat/deduplicated/SRR389222_sub1.sorted.bam.bai",
+                "bismark_hisat/deduplicated/SRR389222_sub2.sorted.bam.bai",
+                "bismark_hisat/deduplicated/SRR389222_sub3.sorted.bam.bai",
                 "bismark_hisat/deduplicated/logs",
                 "bismark_hisat/deduplicated/logs/Ecoli_10K_methylated_1_val_1_bismark_hisat2_pe.deduplication_report.txt",
                 "bismark_hisat/deduplicated/logs/SRR389222_sub1_trimmed_bismark_hisat2.deduplication_report.txt",
@@ -671,6 +654,7 @@
                 "multiqc/bismark_hisat/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/nf_core_methylseq_software_mqc_versions.yml",
+                "pipeline_info/nf_core_methylseq_topic_versions.yml",
                 "trimgalore",
                 "trimgalore/fastqc",
                 "trimgalore/fastqc/Ecoli_10K_methylated_1_val_1_fastqc.html",
@@ -783,7 +767,7 @@
             ],
             [
                 [
-                    "Ecoli_10K_methylated.deduplicated.sorted.bam",
+                    "Ecoli_10K_methylated.sorted.bam",
                     "a1bd6455ebe3ecb43fe55e02d149d98"
                 ],
                 [
@@ -791,7 +775,7 @@
                     "534293d598c34366bcde057d3972b60"
                 ],
                 [
-                    "SRR389222_sub1.deduplicated.sorted.bam",
+                    "SRR389222_sub1.sorted.bam",
                     "8d735d1f6337b2cf2fa720773ce34b60"
                 ],
                 [
@@ -799,7 +783,7 @@
                     "4ee84a71b73e58161226cc4d8ca1f9b9"
                 ],
                 [
-                    "SRR389222_sub2.deduplicated.sorted.bam",
+                    "SRR389222_sub2.sorted.bam",
                     "45d53a598b4e59d173e32ea1f0558083"
                 ],
                 [
@@ -807,28 +791,12 @@
                     "3e3ccc351ed92abdced1edb24fbb94ed"
                 ],
                 [
-                    "SRR389222_sub3.deduplicated.sorted.bam",
+                    "SRR389222_sub3.sorted.bam",
                     "ddb15c5ef0686837616d73f45c154b8d"
                 ],
                 [
                     "SRR389222_sub3_trimmed_bismark_hisat2.bam",
                     "74c99f560772eb303bd4bc257f3a8898"
-                ],
-                [
-                    "Ecoli_10K_methylated.deduplicated.sorted.bam",
-                    "a1bd6455ebe3ecb43fe55e02d149d98"
-                ],
-                [
-                    "SRR389222_sub1.deduplicated.sorted.bam",
-                    "8d735d1f6337b2cf2fa720773ce34b60"
-                ],
-                [
-                    "SRR389222_sub2.deduplicated.sorted.bam",
-                    "45d53a598b4e59d173e32ea1f0558083"
-                ],
-                [
-                    "SRR389222_sub3.deduplicated.sorted.bam",
-                    "ddb15c5ef0686837616d73f45c154b8d"
                 ]
             ]
         ],
@@ -836,14 +804,11 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T07:55:01.585305266"
+        "timestamp": "2025-12-04T10:35:05.513333"
     },
     "Params: bismark_hisat": {
         "content": [
             {
-                "BISMARK_ALIGN": {
-                    "bismark": "0.25.1"
-                },
                 "BISMARK_DEDUPLICATE": {
                     "bismark": "0.25.1"
                 },
@@ -859,16 +824,10 @@
                 "BISMARK_SUMMARY": {
                     "bismark": "0.25.1"
                 },
-                "FASTQC": {
-                    "fastqc": "0.12.1"
-                },
                 "GUNZIP": {
                     "gunzip": 1.13
                 },
                 "SAMTOOLS_INDEX": {
-                    "samtools": "1.22.1"
-                },
-                "SAMTOOLS_SORT": {
                     "samtools": "1.22.1"
                 },
                 "TRIMGALORE": {
@@ -878,6 +837,18 @@
                 },
                 "Workflow": {
                     "nf-core/methylseq": "v4.2.0dev"
+                },
+                "BISMARK_ALIGN": {
+                    "bismark": "0.25.1"
+                },
+                "FASTQC": {
+                    "fastqc": "0.12.1"
+                },
+                "MULTIQC": {
+                    "multiqc": 1.32
+                },
+                "SAMTOOLS_SORT": {
+                    "samtools": "1.22.1"
                 }
             },
             [
@@ -889,14 +860,10 @@
                 "bismark_hisat/alignments/logs/SRR389222_sub2_trimmed_bismark_hisat2_SE_report.txt",
                 "bismark_hisat/alignments/logs/SRR389222_sub3_trimmed_bismark_hisat2_SE_report.txt",
                 "bismark_hisat/deduplicated",
-                "bismark_hisat/deduplicated/Ecoli_10K_methylated.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/Ecoli_10K_methylated.deduplicated.sorted.bam.bai",
-                "bismark_hisat/deduplicated/SRR389222_sub1.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/SRR389222_sub1.deduplicated.sorted.bam.bai",
-                "bismark_hisat/deduplicated/SRR389222_sub2.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/SRR389222_sub2.deduplicated.sorted.bam.bai",
-                "bismark_hisat/deduplicated/SRR389222_sub3.deduplicated.sorted.bam",
-                "bismark_hisat/deduplicated/SRR389222_sub3.deduplicated.sorted.bam.bai",
+                "bismark_hisat/deduplicated/Ecoli_10K_methylated.sorted.bam.bai",
+                "bismark_hisat/deduplicated/SRR389222_sub1.sorted.bam.bai",
+                "bismark_hisat/deduplicated/SRR389222_sub2.sorted.bam.bai",
+                "bismark_hisat/deduplicated/SRR389222_sub3.sorted.bam.bai",
                 "bismark_hisat/deduplicated/logs",
                 "bismark_hisat/deduplicated/logs/Ecoli_10K_methylated_1_val_1_bismark_hisat2_pe.deduplication_report.txt",
                 "bismark_hisat/deduplicated/logs/SRR389222_sub1_trimmed_bismark_hisat2.deduplication_report.txt",
@@ -1099,6 +1066,7 @@
                 "multiqc/bismark_hisat/multiqc_report.html",
                 "pipeline_info",
                 "pipeline_info/nf_core_methylseq_software_mqc_versions.yml",
+                "pipeline_info/nf_core_methylseq_topic_versions.yml",
                 "trimgalore",
                 "trimgalore/fastqc",
                 "trimgalore/fastqc/Ecoli_10K_methylated_1_val_1_fastqc.html",
@@ -1191,28 +1159,13 @@
                 "multiqc_cutadapt.txt:md5,883891ac4901385102be053212068732"
             ],
             [
-                [
-                    "Ecoli_10K_methylated.deduplicated.sorted.bam",
-                    "a1bd6455ebe3ecb43fe55e02d149d98"
-                ],
-                [
-                    "SRR389222_sub1.deduplicated.sorted.bam",
-                    "8d735d1f6337b2cf2fa720773ce34b60"
-                ],
-                [
-                    "SRR389222_sub2.deduplicated.sorted.bam",
-                    "45d53a598b4e59d173e32ea1f0558083"
-                ],
-                [
-                    "SRR389222_sub3.deduplicated.sorted.bam",
-                    "ddb15c5ef0686837616d73f45c154b8d"
-                ]
+                
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-11-26T07:51:02.606421051"
+        "timestamp": "2025-12-04T10:29:59.500277"
     }
 }
