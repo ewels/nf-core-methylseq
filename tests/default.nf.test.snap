@@ -53,10 +53,14 @@
                 "bismark/alignments/logs/SRR389222_sub2_trimmed_bismark_bt2_SE_report.txt",
                 "bismark/alignments/logs/SRR389222_sub3_trimmed_bismark_bt2_SE_report.txt",
                 "bismark/deduplicated",
-                "bismark/deduplicated/Ecoli_10K_methylated.sorted.bam.bai",
-                "bismark/deduplicated/SRR389222_sub1.sorted.bam.bai",
-                "bismark/deduplicated/SRR389222_sub2.sorted.bam.bai",
-                "bismark/deduplicated/SRR389222_sub3.sorted.bam.bai",
+                "bismark/deduplicated/Ecoli_10K_methylated.deduplicated.sorted.bam",
+                "bismark/deduplicated/Ecoli_10K_methylated.deduplicated.sorted.bam.bai",
+                "bismark/deduplicated/SRR389222_sub1.deduplicated.sorted.bam",
+                "bismark/deduplicated/SRR389222_sub1.deduplicated.sorted.bam.bai",
+                "bismark/deduplicated/SRR389222_sub2.deduplicated.sorted.bam",
+                "bismark/deduplicated/SRR389222_sub2.deduplicated.sorted.bam.bai",
+                "bismark/deduplicated/SRR389222_sub3.deduplicated.sorted.bam",
+                "bismark/deduplicated/SRR389222_sub3.deduplicated.sorted.bam.bai",
                 "bismark/deduplicated/logs",
                 "bismark/deduplicated/logs/Ecoli_10K_methylated_1_val_1_bismark_bt2_pe.deduplication_report.txt",
                 "bismark/deduplicated/logs/SRR389222_sub1_trimmed_bismark_bt2.deduplication_report.txt",
@@ -352,13 +356,28 @@
                 "multiqc_cutadapt.txt:md5,883891ac4901385102be053212068732"
             ],
             [
-                
+                [
+                    "Ecoli_10K_methylated.deduplicated.sorted.bam",
+                    "a54ab7c96f9523a4ccd25fd69f6905f8"
+                ],
+                [
+                    "SRR389222_sub1.deduplicated.sorted.bam",
+                    "3f11ef5fbbda3797fd6217728e4f00d3"
+                ],
+                [
+                    "SRR389222_sub2.deduplicated.sorted.bam",
+                    "b01f29fc1d8d46922a69df09c636b4c4"
+                ],
+                [
+                    "SRR389222_sub3.deduplicated.sorted.bam",
+                    "347195c04c9ffd2a2b10967a6682fc69"
+                ]
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-12-04T10:56:51.276142"
+        "timestamp": "2025-12-07T11:49:52.927847"
     }
 }

@@ -533,9 +533,13 @@
                 "bwameth",
                 "bwameth/alignments",
                 "bwameth/alignments/Ecoli_10K_methylated.sorted.bam",
+                "bwameth/alignments/Ecoli_10K_methylated.sorted.bam.bai",
                 "bwameth/alignments/SRR389222_sub1.sorted.bam",
+                "bwameth/alignments/SRR389222_sub1.sorted.bam.bai",
                 "bwameth/alignments/SRR389222_sub2.sorted.bam",
+                "bwameth/alignments/SRR389222_sub2.sorted.bam.bai",
                 "bwameth/alignments/SRR389222_sub3.sorted.bam",
+                "bwameth/alignments/SRR389222_sub3.sorted.bam.bai",
                 "bwameth/alignments/samtools_stats",
                 "bwameth/alignments/samtools_stats/Ecoli_10K_methylated.flagstat",
                 "bwameth/alignments/samtools_stats/Ecoli_10K_methylated.stats",
@@ -751,7 +755,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-12-04T10:45:40.098015"
+        "timestamp": "2025-12-07T11:13:18.080193"
     },
     "Params: bwameth with skip_fastqc": {
         "content": [
@@ -1032,7 +1036,9 @@
                 "bwameth",
                 "bwameth/alignments",
                 "bwameth/alignments/Ecoli_10K_methylated.sorted.bam",
+                "bwameth/alignments/Ecoli_10K_methylated.sorted.bam.bai",
                 "bwameth/alignments/SRR389222.sorted.bam",
+                "bwameth/alignments/SRR389222.sorted.bam.bai",
                 "bwameth/alignments/samtools_stats",
                 "bwameth/alignments/samtools_stats/Ecoli_10K_methylated.flagstat",
                 "bwameth/alignments/samtools_stats/Ecoli_10K_methylated.stats",
@@ -1184,7 +1190,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-12-04T10:53:10.63052"
+        "timestamp": "2025-12-07T11:20:38.501885"
     },
     "Params: bwameth": {
         "content": [
@@ -2622,6 +2628,14 @@
             [
                 "bwameth",
                 "bwameth/alignments",
+                "bwameth/alignments/Ecoli_10K_methylated.sorted.bam",
+                "bwameth/alignments/Ecoli_10K_methylated.sorted.bam.bai",
+                "bwameth/alignments/SRR389222_sub1.sorted.bam",
+                "bwameth/alignments/SRR389222_sub1.sorted.bam.bai",
+                "bwameth/alignments/SRR389222_sub2.sorted.bam",
+                "bwameth/alignments/SRR389222_sub2.sorted.bam.bai",
+                "bwameth/alignments/SRR389222_sub3.sorted.bam",
+                "bwameth/alignments/SRR389222_sub3.sorted.bam.bai",
                 "bwameth/alignments/samtools_stats",
                 "bwameth/alignments/samtools_stats/Ecoli_10K_methylated.flagstat",
                 "bwameth/alignments/samtools_stats/Ecoli_10K_methylated.stats",
@@ -2815,13 +2829,28 @@
                 "samtools_alignment_plot.txt:md5,e10b792693e5a69776f623f5f7de647e"
             ],
             [
-                
+                [
+                    "Ecoli_10K_methylated.sorted.bam",
+                    "8039fd2db60f8ca71daa444e62411f53"
+                ],
+                [
+                    "SRR389222_sub1.sorted.bam",
+                    "a75ccc7cde779aac54662b03e5c01fe0"
+                ],
+                [
+                    "SRR389222_sub2.sorted.bam",
+                    "82d2a7df2d4cb1ed2ea1e0456aff1cb"
+                ],
+                [
+                    "SRR389222_sub3.sorted.bam",
+                    "7856b5549c566fb795c46f0674e069e1"
+                ]
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-12-04T10:46:50.604131"
+        "timestamp": "2025-12-07T11:14:29.953154"
     }
 }
