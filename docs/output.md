@@ -91,7 +91,9 @@ bwameth/
 bwamem/
 ├── bwamem
 │   ├── alignments
+│   │   └── samtools_stats
 │   └── deduplicated
+│       └── picard_metrics
 ├── fastqc
 │   ├── Ecoli_10K_methylated_1_fastqc.html
 │   ├── Ecoli_10K_methylated_2_fastqc.html
@@ -107,15 +109,13 @@ bwamem/
 │   └── pipeline_dag_2024-12-13_05-36-34.html
 ├── rastair
 │   ├── call
-│   |   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_call.tsv
+│   │   └── Ecoli_10K_methylated.rastair_call.txt
 │   ├── mbias
-│   |   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias.tsv
+│   │   └── Ecoli_10K_methylated.rastair_mbias.txt
 │   ├── mbiasparser
-│   │   ├── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.txt
-│   │   ├── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.csv
-│   │   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_mbias_processed.pdf
-│   ├── methylkit
-|   │   └── Ecoli_10K_methylated.markdup.sorted_CpG.rastair_methylkit.txt.gz
+│   │   └── Ecoli_10K_methylated.rastair_mbias_processed.csv
+│   └── methylkit
+│       └── Ecoli_10K_methylated.rastair_methylkit.txt.gz
 └── trimgalore
     ├── fastqc
     └── logs
@@ -212,14 +212,18 @@ _Note that bismark can use either use Bowtie2 (default) or HISAT2 as alignment t
 
 **bwa-mem output directory: `results/bwamem/alignments/`**
 
-- `sample.bam`
-  - Aligned reads in BAM format.
-- `sample.bam.bai`
-  - Index of BAM file
+- `sample.sorted.bam`
+  - Sorted aligned reads in BAM format.
+  - **NB:** Only saved if `--save_align_intermeds` or `--skip_deduplication` is specified.
+- `sample.sorted.bam.bai`
+  - Index of sorted BAM file.
+  - **NB:** Only saved if `--save_align_intermeds` or `--skip_deduplication` is specified.
 - `samtools_stats/sample.flagstat`
   - Summary file describing the number of reads which aligned in different ways.
 - `samtools_stats/sample.stats`
   - Summary file giving lots of metrics about the aligned BAM file.
+- `samtools_stats/sample.idxstats`
+  - Summary file with alignment statistics per reference sequence.
 
 ### Deduplication
 
@@ -245,14 +249,10 @@ This step removes alignments with identical mapping position to avoid technical 
 
 **bwa-mem output directory: `results/bwamem/deduplicated/`**
 
-- `sample.deduplicated.sorted.bam`
-  - Sorted BAM file with only unique alignments.
-- `sample.deduplicated.sorted.bam.bai`
-  - Index for sorted and deduped BAM file.
 - `sample.markdup.sorted.bam`
-  - BAM file with duplicated reads marked.
+  - Sorted BAM file with duplicated reads marked.
 - `sample.markdup.sorted.bam.bai`
-  - BAM file with duplicated reads marked.
+  - Index for the markdup BAM file.
 - `picard_metrics/sample.markdup.sorted.MarkDuplicates.metrics.txt`
   - Log file giving summary statistics about deduplication.
 
@@ -293,18 +293,14 @@ Filename abbreviations stand for the following reference alignment strands:
 
 **bwa-mem / TAPS workflow output directory: `results/rastair/`**
 
-- `call/samples.markdup.sorted_CpG.rastair_call.tsv`
+- `call/sample.rastair_call.txt`
   - Individual methylation calls file sorted by genomic coordinates and including cytosine context.
-- `mbias/sample.markdup.sorted_CpG.rastair_mbias.tsv`
+- `mbias/sample.rastair_mbias.txt`
   - Average conversion rate per position on the read per read pair (R1 and R2) original strand (OT, OB).
-- `mbiasparser/sample.markdup.sorted_CpG.rastair_mbias_processed.txt`
-  - File reporting the dynamic trimming to be passed to the rastair/call process
-- `mbiasparser/sample.markdup.sorted_CpG.rastair_mbias_processed.csv`
-  - File reporting the dynamic trimming to be passed to the rastair/call process
-- `mbiasparser/sample.markdup.sorted_CpG.rastair_mbias_processed.pdf`
-  - PDF file with the plot reporting the mbias and dynamic trimming selected for the sample
-- `methylkit/sample.markdup.sorted_CpG.rastair_methylkit.txt.gz`
-  - Individual methylation calls in a format digestible by MethytlKit R package.
+- `mbiasparser/sample.rastair_mbias_processed.csv`
+  - File reporting the dynamic trimming to be passed to the rastair/call process.
+- `methylkit/sample.rastair_methylkit.txt.gz`
+  - Individual methylation calls in a format digestible by MethylKit R package.
 
 ### Targeted Sequencing
 
@@ -333,9 +329,9 @@ BedGraph files are filtered using the BED file passed to `--target_regions_file`
 
 Bismark generates a HTML reports describing results for each sample, as well as a summary report for the whole run.
 
-**Output directory: `results/bismark_reports`**
+**Output directory: `results/bismark/reports/`**
 
-**Output directory: `results/bismark_summary`**
+**Output directory: `results/bismark/summary/`**
 
 ## Qualimap
 
