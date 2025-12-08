@@ -46,37 +46,30 @@
                 }
             },
             [
-                "bwa",
-                "bwa/bwa",
-                "bwa/bwa/genome.amb",
-                "bwa/bwa/genome.ann",
-                "bwa/bwa/genome.bwt",
-                "bwa/bwa/genome.pac",
-                "bwa/bwa/genome.sa",
                 "bwamem",
                 "bwamem/alignments",
                 "bwamem/alignments/samtools_stats",
                 "bwamem/alignments/samtools_stats/Ecoli_10K_methylated.flagstat",
+                "bwamem/alignments/samtools_stats/Ecoli_10K_methylated.idxstats",
                 "bwamem/alignments/samtools_stats/Ecoli_10K_methylated.stats",
                 "bwamem/alignments/samtools_stats/SRR389222_sub1.flagstat",
+                "bwamem/alignments/samtools_stats/SRR389222_sub1.idxstats",
                 "bwamem/alignments/samtools_stats/SRR389222_sub1.stats",
                 "bwamem/alignments/samtools_stats/SRR389222_sub2.flagstat",
+                "bwamem/alignments/samtools_stats/SRR389222_sub2.idxstats",
                 "bwamem/alignments/samtools_stats/SRR389222_sub2.stats",
                 "bwamem/alignments/samtools_stats/SRR389222_sub3.flagstat",
+                "bwamem/alignments/samtools_stats/SRR389222_sub3.idxstats",
                 "bwamem/alignments/samtools_stats/SRR389222_sub3.stats",
                 "bwamem/deduplicated",
                 "bwamem/deduplicated/Ecoli_10K_methylated.markdup.sorted.bam",
                 "bwamem/deduplicated/Ecoli_10K_methylated.markdup.sorted.bam.bai",
-                "bwamem/deduplicated/Ecoli_10K_methylated.sorted.bam.bai",
                 "bwamem/deduplicated/SRR389222_sub1.markdup.sorted.bam",
                 "bwamem/deduplicated/SRR389222_sub1.markdup.sorted.bam.bai",
-                "bwamem/deduplicated/SRR389222_sub1.sorted.bam.bai",
                 "bwamem/deduplicated/SRR389222_sub2.markdup.sorted.bam",
                 "bwamem/deduplicated/SRR389222_sub2.markdup.sorted.bam.bai",
-                "bwamem/deduplicated/SRR389222_sub2.sorted.bam.bai",
                 "bwamem/deduplicated/SRR389222_sub3.markdup.sorted.bam",
                 "bwamem/deduplicated/SRR389222_sub3.markdup.sorted.bam.bai",
-                "bwamem/deduplicated/SRR389222_sub3.sorted.bam.bai",
                 "bwamem/deduplicated/picard_metrics",
                 "bwamem/deduplicated/picard_metrics/Ecoli_10K_methylated.markdup.sorted.MarkDuplicates.metrics.txt",
                 "bwamem/deduplicated/picard_metrics/SRR389222_sub1.markdup.sorted.MarkDuplicates.metrics.txt",
@@ -225,11 +218,6 @@
                 "multiqc/bwamem/multiqc_plots/svg/samtools_alignment_plot-cnt.svg",
                 "multiqc/bwamem/multiqc_plots/svg/samtools_alignment_plot-pct.svg",
                 "multiqc/bwamem/multiqc_report.html",
-                "picard",
-                "picard/Ecoli_10K_methylated.bam",
-                "picard/SRR389222_sub1.bam",
-                "picard/SRR389222_sub2.bam",
-                "picard/SRR389222_sub3.bam",
                 "pipeline_info",
                 "pipeline_info/nf_core_methylseq_software_mqc_versions.yml",
                 "pipeline_info/nf_core_methylseq_topic_versions.yml",
@@ -254,11 +242,6 @@
                 "rastair/methylkit/SRR389222_sub1.rastair_methylkit.txt.gz",
                 "rastair/methylkit/SRR389222_sub2.rastair_methylkit.txt.gz",
                 "rastair/methylkit/SRR389222_sub3.rastair_methylkit.txt.gz",
-                "samtools",
-                "samtools/Ecoli_10K_methylated.idxstats",
-                "samtools/SRR389222_sub1.idxstats",
-                "samtools/SRR389222_sub2.idxstats",
-                "samtools/SRR389222_sub3.idxstats",
                 "trimgalore",
                 "trimgalore/fastqc",
                 "trimgalore/fastqc/Ecoli_10K_methylated_1_val_1_fastqc.html",
@@ -280,18 +263,17 @@
                 "trimgalore/logs/SRR389222_sub3.fastq.gz_trimming_report.txt"
             ],
             [
-                "genome.amb:md5,c5a18088a0c677c9cdcebec36f2cf418",
-                "genome.ann:md5,78b2fd32c283fbf8ba7624b883349a57",
-                "genome.bwt:md5,86b95928f5c901663ce25d41631a97db",
-                "genome.pac:md5,27c59f7f0708bb35ad99f502c2b33ab7",
-                "genome.sa:md5,85d7f8991619c22bd892471e036b8069",
                 "Ecoli_10K_methylated.flagstat:md5,6875b2d49eec4f8b199bceda4f3ab148",
+                "Ecoli_10K_methylated.idxstats:md5,bfccbb1237079763a8b6625821423ed0",
                 "Ecoli_10K_methylated.stats:md5,d0cdfe71937342f869ad66a55b3ef369",
                 "SRR389222_sub1.flagstat:md5,fbfec3e5592cbb11f050ed06983f2bbd",
+                "SRR389222_sub1.idxstats:md5,47eaa730cb2000975476b03df209a5e8",
                 "SRR389222_sub1.stats:md5,f498a01fafd4a576a787ac846a5a4730",
                 "SRR389222_sub2.flagstat:md5,0ad57bb4ef7b258fc23d9b3ab7ed26b4",
+                "SRR389222_sub2.idxstats:md5,766288f18a1767e4b95c7383005161e8",
                 "SRR389222_sub2.stats:md5,3d6efc44145295bbfd793e89f6e46acd",
                 "SRR389222_sub3.flagstat:md5,c6e3f93f66e47ff2138f640eaebd1c3b",
+                "SRR389222_sub3.idxstats:md5,59fa8ca802e25072377a7527a6801f9b",
                 "SRR389222_sub3.stats:md5,e109c00d56f1cf2866106cccc45706b9",
                 "cutadapt_filtered_reads_plot.txt:md5,ff1b6d4011a5be5410b9404f7ff56c56",
                 "cutadapt_trimmed_sequences_plot_3_Counts.txt:md5,57d07c19b0c30dc88df96c30bedcdc33",
@@ -325,10 +307,6 @@
                 "samtools-idxstats-mapped-reads-plot_Raw_Counts.txt:md5,474c4c51b3f330261d1b8a9c9995e4d8",
                 "samtools-stats-dp.txt:md5,ee0270689f78b57905ebd812bb87891b",
                 "samtools_alignment_plot.txt:md5,3a748a90ccfbb3e55811b71bcb1eece8",
-                "Ecoli_10K_methylated.bam:md5,180c690adcffe119a059ef4016932b92",
-                "SRR389222_sub1.bam:md5,283d34099977aebacd1e4fe8e24ab0ab",
-                "SRR389222_sub2.bam:md5,e521543564ffb76300c6f5b82a037b2d",
-                "SRR389222_sub3.bam:md5,fd2e341084f4abed03cecae4bef80a82",
                 "Ecoli_10K_methylated.rastair_call.txt:md5,23f789a8fe5a457e368f36e02a87ecb2",
                 "SRR389222_sub1.rastair_call.txt:md5,23f789a8fe5a457e368f36e02a87ecb2",
                 "SRR389222_sub2.rastair_call.txt:md5,23f789a8fe5a457e368f36e02a87ecb2",
@@ -344,11 +322,7 @@
                 "Ecoli_10K_methylated.rastair_methylkit.txt.gz:md5,90fdfdb464f2a375c96bf64ea2d30445",
                 "SRR389222_sub1.rastair_methylkit.txt.gz:md5,90fdfdb464f2a375c96bf64ea2d30445",
                 "SRR389222_sub2.rastair_methylkit.txt.gz:md5,90fdfdb464f2a375c96bf64ea2d30445",
-                "SRR389222_sub3.rastair_methylkit.txt.gz:md5,90fdfdb464f2a375c96bf64ea2d30445",
-                "Ecoli_10K_methylated.idxstats:md5,bfccbb1237079763a8b6625821423ed0",
-                "SRR389222_sub1.idxstats:md5,47eaa730cb2000975476b03df209a5e8",
-                "SRR389222_sub2.idxstats:md5,766288f18a1767e4b95c7383005161e8",
-                "SRR389222_sub3.idxstats:md5,59fa8ca802e25072377a7527a6801f9b"
+                "SRR389222_sub3.rastair_methylkit.txt.gz:md5,90fdfdb464f2a375c96bf64ea2d30445"
             ],
             [
                 [
@@ -366,22 +340,6 @@
                 [
                     "SRR389222_sub3.markdup.sorted.bam",
                     "7934578fa655119e9ab995fe8e793f44"
-                ],
-                [
-                    "Ecoli_10K_methylated.bam",
-                    "ab11b56e62ca10400198aeaf7ff734e3"
-                ],
-                [
-                    "SRR389222_sub1.bam",
-                    "afd6b0434556e362a677a5f6bf75e214"
-                ],
-                [
-                    "SRR389222_sub2.bam",
-                    "13bf6e409b464c7ef60dc8d2757daa9c"
-                ],
-                [
-                    "SRR389222_sub3.bam",
-                    "7934578fa655119e9ab995fe8e793f44"
                 ]
             ]
         ],
@@ -389,6 +347,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2025-12-04T10:39:11.815644"
+        "timestamp": "2025-12-07T11:47:22.138798"
     }
 }
