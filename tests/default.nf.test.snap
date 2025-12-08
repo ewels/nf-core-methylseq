@@ -29,7 +29,7 @@
                     "pigz": 2.8
                 },
                 "Workflow": {
-                    "nf-core/methylseq": "v4.2.0dev"
+                    "nf-core/methylseq": "v4.2.0"
                 },
                 "BISMARK_ALIGN": {
                     "bismark": "0.25.1"
